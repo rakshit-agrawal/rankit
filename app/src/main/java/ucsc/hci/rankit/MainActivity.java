@@ -1,9 +1,12 @@
 package ucsc.hci.rankit;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
@@ -14,6 +17,9 @@ public class MainActivity extends ActionBarActivity {
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "fSVwg82cp3vgygtBPUhCfzHT0";
     private static final String TWITTER_SECRET = "CNGDRxqQwubPlXITLb1aJ6YENr9BkJ7PEW4l3xQqkBbv3zFRCJ";
+    private static final String FINAL_STRING_MESSAGE = "Test String";
+
+    public static String FinalString = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,4 +51,13 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void menuActivityCaller(View v){
+
+        Intent intent = new Intent(this, MenuPageActivity.class);
+        intent.putExtra(FINAL_STRING_MESSAGE,FinalString);
+        startActivity(intent);
+
+    }
+
 }
