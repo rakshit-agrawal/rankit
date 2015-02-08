@@ -31,6 +31,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MainActivity" />
         </activity>
+        <activity
+            android:name=".BooksActivityMain"
+            android:label="@string/title_activity_books_activity_main"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+        </activity>
     </application>
 
 </manifest>

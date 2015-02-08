@@ -60,7 +60,7 @@ public class MenuPageActivity extends ActionBarActivity {
     }
     public void booksCaller(View v){
 
-        Intent intent = new Intent(this, MenuPageActivity.class);
+        Intent intent = new Intent(this, BooksActivityMain.class);
         intent.putExtra(BOOKS_CALL_STRING,BooksCallString);
         startActivity(intent);
 
