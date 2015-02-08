@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RankIt</string>
+    <string name="hello_world">This is RankIt!</string>
+    <string name="description_front">A crowdsourced platform to rank items.</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
