@@ -1,5 +1,6 @@
 package ucsc.hci.rankit;
 
+import android.content.ClipData;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,10 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
 public class BooksActivityMain extends ActionBarActivity {
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,4 +58,12 @@ public class BooksActivityMain extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+
+
+
 }
