@@ -1,14 +1,12 @@
 package ucsc.hci.rankit;
 
-import android.content.ClipData;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -33,6 +31,8 @@ public class BooksActivityMain extends ActionBarActivity {
                 Toast.makeText(BooksActivityMain.this, "" + position, Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
     }
 
