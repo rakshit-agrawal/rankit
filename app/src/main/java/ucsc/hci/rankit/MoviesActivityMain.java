@@ -2,12 +2,9 @@ package ucsc.hci.rankit;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,60 +14,26 @@ public class MoviesActivityMain extends ActionBarActivity {
 
     private List<Movies> myMovies = new ArrayList<Movies>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_activity_main);
 
-        populateMovieList();
-        populateListView();
-    }
-
-    private void populateMovieList() {
-        myMovies.add(new Movies("Titanic", "James Cameron", R.drawable.titanic));
-        myMovies.add(new Movies("Avengers", "Joss Whedon", R.drawable.avengers));
-        myMovies.add(new Movies("Avatar", "James Cameron", R.drawable.avatar));
-        myMovies.add(new Movies("Crouching", "Ang Lee", R.drawable.crouching));
-    }
-
-    private void populateListView() {
-        ArrayAdapter<Movies> adapter = new MyListAdapter();
-        ListView list = (ListView) findViewById(R.id.MoviesListView);
-        list.setAdapter(adapter);
-    }
-
-    private class MyListAdapter extends ArrayAdapter<Movies>{
-        public MyListAdapter(){
-            super(MoviesActivityMain.this, R.layout.item_view, myMovies);
+        ArrayList<Movies> mMovieList = new ArrayList<Movies>();
+        for (int i = 0; i < movie.sMovieStrings.length; ++i) {
+            mMovieList.add(movie.sMovieStrings[i]);
         }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent){
-        View itemView = convertView;
-        if (itemView==null) {
-            itemView = getLayoutInflater().inflate(R.layout.item_view, parent, false);
-        }
 
-            Movies currentMovie = myMovies.get(position);
+        StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.item_view, mMovieList);
+        DynamicListView listView = (DynamicListView) findViewById(R.id.MoviesListView);
 
-            ImageView imageView = (ImageView)itemView.findViewById(R.id.item_image);
-            imageView.setImageResource(currentMovie.getIconID());
-
-        TextView titleText = (TextView) itemView.findViewById(R.id.item_title);
-        titleText.setText(currentMovie.getTitle());
-
-        TextView directorText = (TextView) itemView.findViewById(R.id.item_director);
-        directorText.setText(currentMovie.getDirector());
-
-            return itemView;
-        }
-
+        listView.setMovieList(mMovieList);
+        listView.setAdapter(adapter);
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
 
 
-    }
-/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -93,4 +56,5 @@ public class MoviesActivityMain extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-*/
+
+}
