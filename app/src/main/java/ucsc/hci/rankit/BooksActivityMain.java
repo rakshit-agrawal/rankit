@@ -1,17 +1,28 @@
 package ucsc.hci.rankit;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
 
+
+
+
+
+
 public class BooksActivityMain extends ActionBarActivity {
 
+    // Create a string for the ImageView label
+    private static final String GRIDVIEW_TAG = "test tag";
 
 
 
@@ -23,7 +34,7 @@ public class BooksActivityMain extends ActionBarActivity {
 
 
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
+        final GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -32,9 +43,20 @@ public class BooksActivityMain extends ActionBarActivity {
             }
         });
 
+        gridview.setTag(GRIDVIEW_TAG);
+
+
+
+
 
 
     }
+
+
+
+
+
+
 
 
     @Override
