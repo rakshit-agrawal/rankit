@@ -39,6 +39,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
         </activity>
+        <activity
+            android:name=".MoviesActivityMain"
+            android:label="@string/title_activity_movies_activity_main" >
+        </activity>
     </application>
 
 </manifest>
