@@ -1,8 +1,8 @@
 package ucsc.hci.rankit;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,7 +53,7 @@ public class MenuPageActivity extends ActionBarActivity {
 
     public void moviesCaller(View v){
 
-        Intent intent = new Intent(this, MenuPageActivity.class);
+        Intent intent = new Intent(this, MoviesActivityMain.class);
         intent.putExtra(MOVIES_CALL_STRING,MoviesCallString);
         startActivity(intent);
 
