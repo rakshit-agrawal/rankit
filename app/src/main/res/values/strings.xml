@@ -13,5 +13,6 @@
     <string name="music_button">Music</string>
     <string name="images_button">Images</string>
     <string name="title_activity_books_activity_main">BooksActivityMain</string>
+    <string name="title_activity_movies_activity_main">MoviesActivityMain</string>
 
 </resources>
