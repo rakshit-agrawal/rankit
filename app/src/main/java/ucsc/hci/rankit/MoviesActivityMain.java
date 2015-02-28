@@ -22,8 +22,8 @@ public class MoviesActivityMain extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
-        for (int i = 0; i < movie.sMovieStrings.length; ++i) {
-            mObjectList.add(movie.sMovieStrings[i]);
+        for (int i = 0; i < Movie.sMovieStrings.length; ++i) {
+            mObjectList.add(Movie.sMovieStrings[i]);
         }
 
 
