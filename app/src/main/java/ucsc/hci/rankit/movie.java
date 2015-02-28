@@ -5,9 +5,9 @@ package ucsc.hci.rankit;
  */
 public class Movie {
     public static final RankObjects[] sMovieStrings = new RankObjects[] {
-            new RankObjects("Titanic", "James Cameron", R.drawable.titanic),
-            new RankObjects("Avengers", "Joss Whedon", R.drawable.avengers),
-            new RankObjects("Avatar", "James Cameron", R.drawable.avatar),
-            new RankObjects("Crouching", "Ang Lee", R.drawable.crouching)
+            new RankObjects("Avengers", "Joss Whedon", R.drawable.avengers, ObjType.MOVIES),
+            new RankObjects("Avatar", "James Cameron", R.drawable.avatar, ObjType.MOVIES),
+            new RankObjects("Titanic", "James Cameron", R.drawable.titanic, ObjType.MOVIES),
+            new RankObjects("The Dark Knight", "Christopher Nolan", R.drawable.the_dark_knight, ObjType.MOVIES)
     };
 }

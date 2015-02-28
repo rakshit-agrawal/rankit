@@ -17,6 +17,9 @@
 package ucsc.hci.rankit;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +31,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
-
+    private ObjType type;
     final int INVALID_ID = -1;
     private final Context context;
+    int[] colorsRed = new int[] {R.color.red1, R.color.red2, R.color.red3, R.color.red4};
+    int[] colorsPurple = new int[] {R.color.purple1, R.color.purple2, R.color.purple3, R.color.purple4};
+    int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
     HashMap<RankObjects, Integer> mIdMap = new HashMap<RankObjects, Integer>();
 
@@ -40,6 +46,7 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
         for (int i = 0; i < objects.size(); ++i) {
             mIdMap.put(objects.get(i), i);
         }
+        type = objects.get(0).getType();
     }
 
     @Override
@@ -55,6 +62,18 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
         TextView titleText = (TextView) itemView.findViewById(R.id.item_title);
         titleText.setText(currentObjects.getTitle());
+        Drawable rounded_corners = (Drawable) itemView.getResources().getDrawable(R.drawable.rounded_corners);
+        if(type == ObjType.MOVIES) {
+            rounded_corners.setColorFilter(new
+                    PorterDuffColorFilter(itemView.getResources().getColor(colorsRed[position]), PorterDuff.Mode.MULTIPLY));
+        } else if (type == ObjType.MUSIC) {
+            rounded_corners.setColorFilter(new
+                    PorterDuffColorFilter(itemView.getResources().getColor(colorsPurple[position]), PorterDuff.Mode.MULTIPLY));
+        } else { // Images
+            rounded_corners.setColorFilter(new
+                    PorterDuffColorFilter(itemView.getResources().getColor(colorsGreen[position]), PorterDuff.Mode.MULTIPLY));
+        }
+        itemView.setBackground(rounded_corners);
 
         TextView directorText = (TextView) itemView.findViewById(R.id.item_director);
         directorText.setText(currentObjects.getDirector());

@@ -22,10 +22,10 @@ public class MoviesActivityMain extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
+
         for (int i = 0; i < Movie.sMovieStrings.length; ++i) {
             mObjectList.add(Movie.sMovieStrings[i]);
         }
-
 
         StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.item_view, mObjectList);
         DynamicListView listView = (DynamicListView) findViewById(R.id.MoviesListView);
