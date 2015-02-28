@@ -18,8 +18,6 @@ public class BooksActivityMain extends ActionBarActivity {
         setContentView(R.layout.activity_books_activity_main);
 
 
-
-
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 

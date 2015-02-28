@@ -43,6 +43,10 @@
             android:name=".MoviesActivityMain"
             android:label="@string/title_activity_movies_activity_main" >
         </activity>
+        <activity
+            android:name=".MusicActivityMain"
+            android:label="@string/title_activity_music_activity_main" >
+        </activity>
     </application>
 
 </manifest>

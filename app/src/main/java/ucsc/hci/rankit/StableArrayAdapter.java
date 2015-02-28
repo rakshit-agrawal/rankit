@@ -27,14 +27,14 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
-public class StableArrayAdapter extends ArrayAdapter<Movies> {
+public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
     final int INVALID_ID = -1;
     private final Context context;
 
-    HashMap<Movies, Integer> mIdMap = new HashMap<Movies, Integer>();
+    HashMap<RankObjects, Integer> mIdMap = new HashMap<RankObjects, Integer>();
 
-    public StableArrayAdapter(Context context, int textViewResourceId, List<Movies> objects) {
+    public StableArrayAdapter(Context context, int textViewResourceId, List<RankObjects> objects) {
         super(context, textViewResourceId, objects);
         this.context = context;
         for (int i = 0; i < objects.size(); ++i) {
@@ -51,16 +51,16 @@ public class StableArrayAdapter extends ArrayAdapter<Movies> {
             itemView = inflater.inflate(R.layout.item_view, parent, false);
         }
 
-        Movies currentMovie = getItem(position);
+        RankObjects currentObjects = getItem(position);
 
         TextView titleText = (TextView) itemView.findViewById(R.id.item_title);
-        titleText.setText(currentMovie.getTitle());
+        titleText.setText(currentObjects.getTitle());
 
         TextView directorText = (TextView) itemView.findViewById(R.id.item_director);
-        directorText.setText(currentMovie.getDirector());
+        directorText.setText(currentObjects.getDirector());
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.item_image);
-        imageView.setImageResource(currentMovie.getIconID());
+        imageView.setImageResource(currentObjects.getIconID());
 
         TextView rankText = (TextView) itemView.findViewById(R.id.item_rank);
         rankText.setText(""+(position+1));
@@ -73,12 +73,16 @@ public class StableArrayAdapter extends ArrayAdapter<Movies> {
         if (position < 0 || position >= mIdMap.size()) {
             return INVALID_ID;
         }
-        Movies item = getItem(position);
+        RankObjects item = getItem(position);
         return mIdMap.get(item);
     }
 
     @Override
     public boolean hasStableIds() {
-        return true;
+        return android.os.Build.VERSION.SDK_INT < 21; //lollipop is 21, lower version kitkat is 19.
+        //return android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP (21);
+    // return true;
     }
+
+
 }
