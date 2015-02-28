@@ -17,6 +17,9 @@
 package ucsc.hci.rankit;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,19 +30,23 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 
-public class StableArrayAdapter extends ArrayAdapter<Movies> {
-
+public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
+    private ObjType type;
     final int INVALID_ID = -1;
     private final Context context;
+    int[] colorsRed = new int[] {R.color.red1, R.color.red2, R.color.red3, R.color.red4};
+    int[] colorsPurple = new int[] {R.color.purple1, R.color.purple2, R.color.purple3, R.color.purple4};
+    int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
-    HashMap<Movies, Integer> mIdMap = new HashMap<Movies, Integer>();
+    HashMap<RankObjects, Integer> mIdMap = new HashMap<RankObjects, Integer>();
 
-    public StableArrayAdapter(Context context, int textViewResourceId, List<Movies> objects) {
+    public StableArrayAdapter(Context context, int textViewResourceId, List<RankObjects> objects) {
         super(context, textViewResourceId, objects);
         this.context = context;
         for (int i = 0; i < objects.size(); ++i) {
             mIdMap.put(objects.get(i), i);
         }
+        type = objects.get(0).getType();
     }
 
     @Override
@@ -51,16 +58,28 @@ public class StableArrayAdapter extends ArrayAdapter<Movies> {
             itemView = inflater.inflate(R.layout.item_view, parent, false);
         }
 
-        Movies currentMovie = getItem(position);
+        RankObjects currentObjects = getItem(position);
 
         TextView titleText = (TextView) itemView.findViewById(R.id.item_title);
-        titleText.setText(currentMovie.getTitle());
+        titleText.setText(currentObjects.getTitle());
+        Drawable rounded_corners = (Drawable) itemView.getResources().getDrawable(R.drawable.rounded_corners);
+        if(type == ObjType.MOVIES) {
+            rounded_corners.setColorFilter(new
+                    PorterDuffColorFilter(itemView.getResources().getColor(colorsRed[position]), PorterDuff.Mode.MULTIPLY));
+        } else if (type == ObjType.MUSIC) {
+            rounded_corners.setColorFilter(new
+                    PorterDuffColorFilter(itemView.getResources().getColor(colorsPurple[position]), PorterDuff.Mode.MULTIPLY));
+        } else { // Images
+            rounded_corners.setColorFilter(new
+                    PorterDuffColorFilter(itemView.getResources().getColor(colorsGreen[position]), PorterDuff.Mode.MULTIPLY));
+        }
+        itemView.setBackground(rounded_corners);
 
         TextView directorText = (TextView) itemView.findViewById(R.id.item_director);
-        directorText.setText(currentMovie.getDirector());
+        directorText.setText(currentObjects.getDirector());
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.item_image);
-        imageView.setImageResource(currentMovie.getIconID());
+        imageView.setImageResource(currentObjects.getIconID());
 
         TextView rankText = (TextView) itemView.findViewById(R.id.item_rank);
         rankText.setText(""+(position+1));
@@ -73,12 +92,16 @@ public class StableArrayAdapter extends ArrayAdapter<Movies> {
         if (position < 0 || position >= mIdMap.size()) {
             return INVALID_ID;
         }
-        Movies item = getItem(position);
+        RankObjects item = getItem(position);
         return mIdMap.get(item);
     }
 
     @Override
     public boolean hasStableIds() {
-        return true;
+        return android.os.Build.VERSION.SDK_INT < 21; //lollipop is 21, lower version kitkat is 19.
+        //return android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP (21);
+    // return true;
     }
+
+
 }

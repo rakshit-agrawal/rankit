@@ -1,18 +1,16 @@
 package ucsc.hci.rankit;
 
-/**
- * Created by yanfeitu on 2/22/15.
- */
-public class Movies {
-
+public class RankObjects {
+    private ObjType type;
     private String title;
     private String director;
     private int iconID;
 
-    public Movies(String title, String director, int iconID) {
+    public RankObjects(String title, String director, int iconID, ObjType type) {
         this.title = title;
         this.director = director;
         this.iconID = iconID;
+        this.type = type;
     }
 
     public String getDirector() {
@@ -27,6 +25,8 @@ public class Movies {
         return iconID;
     }
 
-
+    public ObjType getType() {
+        return type;
+    }
 
 }

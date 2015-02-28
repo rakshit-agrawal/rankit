@@ -3,11 +3,11 @@ package ucsc.hci.rankit;
 /**
  * Created by yanfeitu on 2/25/15.
  */
-public class movie {
-    public static final Movies[] sMovieStrings = new Movies[] {
-            new Movies("Titanic", "James Cameron", R.drawable.titanic),
-            new Movies("Avengers", "Joss Whedon", R.drawable.avengers),
-            new Movies("Avatar", "James Cameron", R.drawable.avatar),
-            new Movies("Crouching", "Ang Lee", R.drawable.crouching)
+public class Movie {
+    public static final RankObjects[] sMovieStrings = new RankObjects[] {
+            new RankObjects("Avengers", "Joss Whedon", R.drawable.avengers, ObjType.MOVIES),
+            new RankObjects("Avatar", "James Cameron", R.drawable.avatar, ObjType.MOVIES),
+            new RankObjects("Titanic", "James Cameron", R.drawable.titanic, ObjType.MOVIES),
+            new RankObjects("The Dark Knight", "Christopher Nolan", R.drawable.the_dark_knight, ObjType.MOVIES)
     };
 }

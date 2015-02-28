@@ -58,6 +58,7 @@ public class MenuPageActivity extends ActionBarActivity {
         startActivity(intent);
 
     }
+
     public void booksCaller(View v){
 
         Intent intent = new Intent(this, BooksActivityMain.class);
@@ -67,14 +68,14 @@ public class MenuPageActivity extends ActionBarActivity {
     }
     public void musicCaller(View v){
 
-        Intent intent = new Intent(this, MenuPageActivity.class);
+        Intent intent = new Intent(this, MusicActivityMain.class);
         intent.putExtra(MUSIC_CALL_STRING,MusicCallString);
         startActivity(intent);
 
     }
     public void imagesCaller(View v){
 
-        Intent intent = new Intent(this, MenuPageActivity.class);
+        Intent intent = new Intent(this, ImagesActivityMain.class);
         intent.putExtra(IMAGES_CALL_STRING,ImagesCallString);
         startActivity(intent);
 

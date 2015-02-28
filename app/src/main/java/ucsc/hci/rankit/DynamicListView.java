@@ -65,9 +65,9 @@ public class DynamicListView extends ListView {
 
     private final int SMOOTH_SCROLL_AMOUNT_AT_EDGE = 15;
     private final int MOVE_DURATION = 150;
-    private final int LINE_THICKNESS = 15;
+    private final int LINE_THICKNESS = 5;
 
-    public ArrayList<Movies> mMovieList;
+    public ArrayList<RankObjects> mObjectList;
 
     private int mLastEventY = -1;
 
@@ -176,7 +176,7 @@ public class DynamicListView extends ListView {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(LINE_THICKNESS);
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.WHITE);
 
         can.drawBitmap(bitmap, 0, 0, null);
         can.drawRect(rect, paint);
@@ -332,7 +332,7 @@ public class DynamicListView extends ListView {
                 return;
             }
 
-            swapElements(mMovieList, originalItem, getPositionForView(switchView));
+            swapElements(mObjectList, originalItem, getPositionForView(switchView));
 
             ((BaseAdapter) getAdapter()).notifyDataSetChanged();
 
@@ -340,8 +340,14 @@ public class DynamicListView extends ListView {
 
             final int switchViewStartTop = switchView.getTop();
 
-            mobileView.setVisibility(View.VISIBLE);
-            switchView.setVisibility(View.INVISIBLE);
+         //   if (android.os.Build.VERSION.SDK_INT <= android.os.Build.VERSION_CODES.KITKAT) {
+                mobileView.setVisibility(View.VISIBLE);
+                switchView.setVisibility(View.INVISIBLE);
+         //   }
+         //   else {
+         //       mobileView.setVisibility(View.INVISIBLE);
+         //       switchView.setVisibility(View.VISIBLE);
+         //   }
 
             updateNeighborViewsForID(mMobileItemId);
 
@@ -500,8 +506,8 @@ public class DynamicListView extends ListView {
         return false;
     }
 
-    public void setMovieList(ArrayList<Movies> movieList) {
-        mMovieList = movieList;
+    public void setObjectList(ArrayList<RankObjects> objectList) {
+        mObjectList = objectList;
     }
 
     /**
