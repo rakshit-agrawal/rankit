@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 
 public class MenuPageActivity extends ActionBarActivity {
 
@@ -24,6 +27,16 @@ public class MenuPageActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_page);
+        final String path = getString(R.string.helpPath);
+
+
+        //@Override
+        //public void onClick(View v) {
+            Tracker t = ((RankItApp) getApplication()).getTracker(
+                    RankItApp.TrackerName.APP_TRACKER);
+            t.setScreenName(path);
+            t.send(new HitBuilders.AppViewBuilder().build());
+        //}
 
     }
 
