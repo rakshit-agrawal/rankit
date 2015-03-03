@@ -14,11 +14,14 @@ public class MenuPageActivity extends ActionBarActivity {
     public static String BooksCallString = null;
     public static String MusicCallString = null;
     public static String ImagesCallString = null;
+    public static String FinalString = null;
 
     public final static String MOVIES_CALL_STRING = "";
     public final static String BOOKS_CALL_STRING = "";
     public final static String MUSIC_CALL_STRING = "";
     public final static String IMAGES_CALL_STRING = "";
+    private static final String FINAL_STRING_MESSAGE = "Test String";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,15 @@ public class MenuPageActivity extends ActionBarActivity {
 
         Intent intent = new Intent(this, ImagesActivityMain.class);
         intent.putExtra(IMAGES_CALL_STRING,ImagesCallString);
+        startActivity(intent);
+
+    }
+
+
+    public void menuActivityCaller(View v){
+
+        Intent intent = new Intent(this, MenuPageActivity.class);
+        intent.putExtra(FINAL_STRING_MESSAGE,FinalString);
         startActivity(intent);
 
     }
