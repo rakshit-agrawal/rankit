@@ -17,6 +17,9 @@
     <string name="title_activity_music_activity_main">MusicActivityMain</string>
     <string name="title_activity_images_activity_main">ImagesActivityMain</string>
 
+    <string name="movies_top">☰Movies</string>
+
+
 
     <item name="black" type="color">#000000</item>
     <item name="black1" type="color">#212121</item>

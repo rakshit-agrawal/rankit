@@ -20,12 +20,15 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.Circle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -78,8 +81,13 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
         TextView directorText = (TextView) itemView.findViewById(R.id.item_director);
         directorText.setText(currentObjects.getDirector());
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.item_image);
+        //ImageView imageView = (ImageView) itemView.findViewById(R.id.item_image);
+
+        RoundedImageView imageView = (RoundedImageView) itemView.findViewById(R.id.item_image);
         imageView.setImageResource(currentObjects.getIconID());
+
+
+
 
         TextView rankText = (TextView) itemView.findViewById(R.id.item_rank);
         rankText.setText(""+(position+1));
