@@ -20,6 +20,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,7 +77,16 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
             rounded_corners.setColorFilter(new
                     PorterDuffColorFilter(itemView.getResources().getColor(colorsGreen[position]), PorterDuff.Mode.MULTIPLY));
         }
-        itemView.setBackground(rounded_corners);
+        //itemView.setBackgroundDrawable(rounded_corners);
+        //itemView.setBackground(rounded_corners);
+        if (Build.VERSION.SDK_INT >= 16) {
+
+            itemView.setBackground(rounded_corners);
+
+        } else {
+
+            itemView.setBackgroundDrawable(rounded_corners);
+        }
 
         TextView directorText = (TextView) itemView.findViewById(R.id.item_director);
         directorText.setText(currentObjects.getDirector());
