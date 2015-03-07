@@ -71,4 +71,10 @@
         <item>Mystery</item>
     </string-array>
 
+    <string-array name="movies_genres">
+        <item>Featured</item>
+        <item>Action</item>
+        <item>Comedy</item>
+    </string-array>
+
 </resources>
