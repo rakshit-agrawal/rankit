@@ -18,7 +18,9 @@
     <string name="title_activity_images_activity_main">ImagesActivityMain</string>
 
     <string name="movies_top">☰Movies</string>
-
+    <string name="submit_button">Submit</string>
+    <string name="item_prompt">Select</string>
+    <string name="user_welcome_text">Welcome User!</string>
 
 
     <item name="black" type="color">#000000</item>
