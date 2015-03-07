@@ -77,4 +77,10 @@
         <item>Comedy</item>
     </string-array>
 
+    <string-array name="music_genres">
+        <item>Classic Rock</item>
+        <item>Alternative</item>
+        <item>Metal</item>
+    </string-array>
+
 </resources>

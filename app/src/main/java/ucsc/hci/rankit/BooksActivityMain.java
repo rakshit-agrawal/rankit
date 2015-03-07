@@ -45,6 +45,7 @@ public class BooksActivityMain extends ActionBarActivity {
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+
         //--- Spinner feature end
 
 

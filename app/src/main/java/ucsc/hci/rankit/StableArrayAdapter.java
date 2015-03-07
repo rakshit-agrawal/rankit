@@ -66,6 +66,8 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
         TextView titleText = (TextView) itemView.findViewById(R.id.item_title);
         titleText.setText(currentObjects.getTitle());
+        //titleText.setTextSize(R.dimen.abc_text_size_body_1_material);
+
         Drawable rounded_corners = (Drawable) itemView.getResources().getDrawable(R.drawable.rounded_corners);
         if(type == ObjType.MOVIES) {
             rounded_corners.setColorFilter(new
@@ -90,11 +92,14 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
         TextView directorText = (TextView) itemView.findViewById(R.id.item_director);
         directorText.setText(currentObjects.getDirector());
+        //directorText.setTextSize(R.dimen.abc_text_size_body_1_material);
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.item_image);
 
         //RoundedImageView imageView = (RoundedImageView) itemView.findViewById(R.id.item_image);
         imageView.setImageResource(currentObjects.getIconID());
+        imageView.setPadding(10, 10, 10, 10);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 
 

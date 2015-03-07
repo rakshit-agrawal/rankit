@@ -1,27 +1,162 @@
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id = "@+id/base_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="ucsc.hci.rankit.MusicActivityMain">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/music_head"
-        android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <ucsc.hci.rankit.DynamicListView
-        android:id="@+id/MusicListView"
-        android:background="#0000"
+    <RelativeLayout
+        android:id="@+id/top_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/music_head" />
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="@dimen/abc_action_bar_icon_vertical_padding_material">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/main_text"
+            android:text="@string/movies_button"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+
+
+        <Button
+            android:id="@+id/submit_button"
+            android:text="@string/submit_button"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:onClick="booksCaller"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_text_size_headline_material"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:paddingLeft="@dimen/abc_text_size_small_material"
+            android:paddingRight="@dimen/abc_text_size_small_material"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:background="@color/purple2"
+            />
+
+
+
+        <!-- Code for spinner -->
+        <Spinner
+            android:id="@+id/music_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_text_size_headline_material"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/main_text"
+            android:layout_toEndOf="@id/main_text"
+            android:layout_below="@id/submit_button"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:background="@color/purple2"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/abc_text_size_small_material"
+            android:paddingRight="@dimen/abc_text_size_small_material">
+
+        </Spinner>
+
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_layout"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_centerHorizontal="true"
+        >
+
+
+
+
+        <ucsc.hci.rankit.DynamicListView
+            android:id="@+id/MusicListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"/>
+
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <!-- For all Screens -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bottom_bar_grey">
+
+
+
+
+        <ImageView
+            android:id="@+id/user_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_action_person"
+            android:onClick="menuActivityCaller"/>
+
+
+        <ImageView
+            android:id="@+id/settings_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:src="@drawable/ic_action_settings"
+            android:onClick="menuActivityCaller"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</RelativeLayout> <!-- End of base -->
+
