@@ -1,8 +1,8 @@
 package ucsc.hci.rankit;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,11 +17,14 @@ public class MenuPageActivity extends ActionBarActivity {
     public static String BooksCallString = null;
     public static String MusicCallString = null;
     public static String ImagesCallString = null;
+    public static String FinalString = null;
 
     public final static String MOVIES_CALL_STRING = "";
     public final static String BOOKS_CALL_STRING = "";
     public final static String MUSIC_CALL_STRING = "";
     public final static String IMAGES_CALL_STRING = "";
+    private static final String FINAL_STRING_MESSAGE = "Test String";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +69,12 @@ public class MenuPageActivity extends ActionBarActivity {
 
     public void moviesCaller(View v){
 
-        Intent intent = new Intent(this, MenuPageActivity.class);
+        Intent intent = new Intent(this, MoviesActivityMain.class);
         intent.putExtra(MOVIES_CALL_STRING,MoviesCallString);
         startActivity(intent);
 
     }
+
     public void booksCaller(View v){
 
         Intent intent = new Intent(this, BooksActivityMain.class);
@@ -80,15 +84,28 @@ public class MenuPageActivity extends ActionBarActivity {
     }
     public void musicCaller(View v){
 
-        Intent intent = new Intent(this, MenuPageActivity.class);
+        Intent intent = new Intent(this, MusicActivityMain.class);
         intent.putExtra(MUSIC_CALL_STRING,MusicCallString);
         startActivity(intent);
 
     }
     public void imagesCaller(View v){
 
+<<<<<<< HEAD
         Intent intent = new Intent(this, ImageActivityMain.class);
+=======
+        Intent intent = new Intent(this, ImagesActivityMain.class);
+>>>>>>> origin/dev
         intent.putExtra(IMAGES_CALL_STRING,ImagesCallString);
+        startActivity(intent);
+
+    }
+
+
+    public void menuActivityCaller(View v){
+
+        Intent intent = new Intent(this, MenuPageActivity.class);
+        intent.putExtra(FINAL_STRING_MESSAGE,FinalString);
         startActivity(intent);
 
     }
