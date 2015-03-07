@@ -52,19 +52,25 @@
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
         </activity>
         <activity
-<<<<<<< HEAD
-            android:name=".ImageActivityMain"
-=======
             android:name=".MoviesActivityMain"
-            android:label="@string/title_activity_movies_activity_main" >
+            android:label="@string/title_activity_movies_activity_main"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+
         </activity>
         <activity
             android:name=".MusicActivityMain"
-            android:label="@string/title_activity_music_activity_main" >
+            android:label="@string/title_activity_music_activity_main"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+
         </activity>
         <activity
             android:name=".ImagesActivityMain"
->>>>>>> origin/dev
             android:label="@string/title_activity_images_activity_main"
             android:parentActivityName=".MenuPageActivity" >
             <meta-data

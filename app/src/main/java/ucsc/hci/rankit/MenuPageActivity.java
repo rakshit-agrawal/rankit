@@ -91,11 +91,8 @@ public class MenuPageActivity extends ActionBarActivity {
     }
     public void imagesCaller(View v){
 
-<<<<<<< HEAD
         Intent intent = new Intent(this, ImageActivityMain.class);
-=======
-        Intent intent = new Intent(this, ImagesActivityMain.class);
->>>>>>> origin/dev
+
         intent.putExtra(IMAGES_CALL_STRING,ImagesCallString);
         startActivity(intent);
 

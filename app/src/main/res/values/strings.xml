@@ -13,11 +13,8 @@
     <string name="music_button">Music</string>
     <string name="images_button">Images</string>
     <string name="title_activity_books_activity_main">BooksActivityMain</string>
-<<<<<<< HEAD
-    <string name="title_activity_images_activity_main">ImagesActivityMain</string>
     <string name="helpPath">Help Screen</string>
 
-=======
     <string name="title_activity_movies_activity_main">MoviesActivityMain</string>
     <string name="title_activity_music_activity_main">MusicActivityMain</string>
     <string name="title_activity_images_activity_main">ImagesActivityMain</string>
@@ -67,6 +64,11 @@
         <item>@color/darkorange</item>
         <item>@color/darkred</item>
     </integer-array>
->>>>>>> origin/dev
+
+
+    <string-array name="books_categories">
+        <item>Featured</item>
+        <item>Mystery</item>
+    </string-array>
 
 </resources>
