@@ -1,37 +1,30 @@
 package ucsc.hci.rankit;
 
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.DragEvent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-
-
-
-
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class BooksActivityMain extends ActionBarActivity {
 
-    // Create a string for the ImageView label
-    private static final String GRIDVIEW_TAG = "test tag";
-
-
+    private static final String TAG = BooksActivityMain.class.getName();
+    private DynamicGridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books_activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         //--- Spinner feature start
@@ -49,32 +42,57 @@ public class BooksActivityMain extends ActionBarActivity {
         //--- Spinner feature end
 
 
+        ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
 
-        final GridView gridview = (GridView) findViewById(R.id.gridview);
-        //GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
+        for (int i = 0; i < Book.sBookStrings.length; ++i) {
+            mObjectList.add(Book.sBookStrings[i]);
+        }
 
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Toast.makeText(BooksActivityMain.this, "" + position, Toast.LENGTH_SHORT).show();
+        gridView = (DynamicGridView) findViewById(R.id.dynamic_grid);
+        gridView.setAdapter(new DynamicGridAdapter(this,
+                new ArrayList<RankObjects>(Arrays.asList(Book.sBookStrings)),
+                getResources().getInteger(R.integer.column_count)));
+
+/*
+        // add callback to stop edit mode if needed
+        gridView.setOnDropListener(new DynamicGridView.OnDropListener()
+        {
+            @Override
+            public void onActionDrop()
+            {
+                gridView.stopEditMode();
+            }
+        });
+*/
+
+        gridView.setOnDragListener(new DynamicGridView.OnDragListener() {
+            @Override
+            public void onDragStarted(int position) {
+                Log.d(TAG, "drag started at position " + position);
+            }
+
+            @Override
+            public void onDragPositionsChanged(int oldPosition, int newPosition) {
+                Log.d(TAG, String.format("drag item position changed from %d to %d", oldPosition, newPosition));
+                //Log.d(TAG, CheeseObjects.format("drag item position changed from %d to %d", oldPosition, newPosition));
+            }
+        });
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                gridView.startEditMode(position);
+                return true;
             }
         });
 
-        gridview.setTag(GRIDVIEW_TAG);
-
-
-
-
-
-
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(BooksActivityMain.this, parent.getAdapter().getItem(position).toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,12 +115,4 @@ public class BooksActivityMain extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
-
-
 }

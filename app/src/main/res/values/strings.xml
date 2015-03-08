@@ -24,6 +24,8 @@
     <string name="item_prompt">Select</string>
     <string name="user_welcome_text">Welcome User!</string>
 
+    <item type="id" name="dgv_wobble_tag"/>
+    <integer name="column_count">2</integer>
 
     <item name="black" type="color">#000000</item>
     <item name="black1" type="color">#212121</item>

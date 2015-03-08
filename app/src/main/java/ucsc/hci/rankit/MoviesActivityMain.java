@@ -10,21 +10,17 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MoviesActivityMain extends ActionBarActivity {
 
-    private List<RankObjects> myObjects = new ArrayList<RankObjects>();
+//    private List<RankObjects> myObjects = new ArrayList<RankObjects>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_activity_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
 
         //--- Spinner feature start
 
