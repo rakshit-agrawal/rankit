@@ -34,7 +34,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -76,9 +75,14 @@ public class DynamicListView extends ListView {
 
     private int mTotalOffset = 0;
 
+    private int lastTouchedViewId = -1;
+    private long duration = System.currentTimeMillis();
+    private long LONG_CLICK_DURATION = 1000;
+
     private boolean mCellIsMobile = false;
     private boolean mIsMobileScrolling = false;
     private int mSmoothScrollAmountAtEdge = 0;
+    private boolean mIsDragging = false;
 
     private final int INVALID_ID = -1;
     private long mAboveItemId = INVALID_ID;
@@ -111,7 +115,8 @@ public class DynamicListView extends ListView {
     }
 
     public void init(Context context) {
-        setOnItemLongClickListener(mOnItemLongClickListener);
+        // This is no longer needed, as now we initiate drag onTouchEvent.
+//        setOnItemLongClickListener(mOnItemLongClickListener);
         setOnScrollListener(mScrollListener);
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         mSmoothScrollAmountAtEdge = (int)(SMOOTH_SCROLL_AMOUNT_AT_EDGE / metrics.density);
@@ -121,26 +126,27 @@ public class DynamicListView extends ListView {
      * Listens for long clicks on any items in the listview. When a cell has
      * been selected, the hover cell is created and set up.
      */
+    /*
     private OnItemLongClickListener mOnItemLongClickListener =
-            new OnItemLongClickListener() {
-                public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
-                    mTotalOffset = 0;
+        new OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
+                mTotalOffset = 0;
 
-                    int position = pointToPosition(mDownX, mDownY);
-                    int itemNum = position - getFirstVisiblePosition();
+                int position = pointToPosition(mDownX, mDownY);
+                int itemNum = position - getFirstVisiblePosition();
 
-                    View selectedView = getChildAt(itemNum);
-                    mMobileItemId = getAdapter().getItemId(position);
-                    mHoverCell = getAndAddHoverView(selectedView);
-                    selectedView.setVisibility(INVISIBLE);
+                View selectedView = getChildAt(itemNum);
+                mMobileItemId = getAdapter().getItemId(position);
+                mHoverCell = getAndAddHoverView(selectedView);
+                selectedView.setVisibility(INVISIBLE);
 
-                    mCellIsMobile = true;
+                mCellIsMobile = true;
 
-                    updateNeighborViewsForID(mMobileItemId);
-
-                    return true;
-                }
-            };
+                updateNeighborViewsForID(mMobileItemId);
+                return true;
+            }
+        };
+*/
 
     /**
      * Creates the hover cell with the appropriate bitmap and of appropriate
@@ -250,13 +256,33 @@ public class DynamicListView extends ListView {
             case MotionEvent.ACTION_DOWN:
                 mDownX = (int)event.getX();
                 mDownY = (int)event.getY();
+
                 mActivePointerId = event.getPointerId(0);
+
+                // This part has been copied from OnItemLongClickListener code above (which has now
+                // been commented out).
+                mTotalOffset = 0;
+
+                int position = pointToPosition(mDownX, mDownY);
+                int itemNum = position - getFirstVisiblePosition();
+
+                View selectedView = getChildAt(itemNum);
+                mMobileItemId = getAdapter().getItemId(position);
+                mHoverCell = getAndAddHoverView(selectedView);
+                selectedView.setVisibility(INVISIBLE);
+
+                mCellIsMobile = true;
+
+                updateNeighborViewsForID(mMobileItemId);
+                // End of copy-paste from OnItemLongClickListener
+
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (mActivePointerId == INVALID_POINTER_ID) {
                     break;
                 }
 
+                if(mIsMobileScrolling || mIsWaitingForScrollFinish) break;
                 int pointerIndex = event.findPointerIndex(mActivePointerId);
 
                 mLastEventY = (int) event.getY(pointerIndex);
@@ -452,6 +478,7 @@ public class DynamicListView extends ListView {
         mCellIsMobile = false;
         mIsMobileScrolling = false;
         mActivePointerId = INVALID_POINTER_ID;
+//        readyToMove = true;
     }
 
     /**
