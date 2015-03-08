@@ -24,6 +24,11 @@
     <string name="item_prompt">Select</string>
     <string name="user_welcome_text">Welcome User!</string>
 
+    <string name="connection_error">
+        No network connection available!\nPlease connect to the internet.</string>
+    <string name="try_again_error">
+        Unable to fetch data. Please try again.</string>
+
 
     <item name="black" type="color">#000000</item>
     <item name="black1" type="color">#212121</item>
