@@ -5,7 +5,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,21 @@ public class MusicActivityMain extends ActionBarActivity {
         setContentView(R.layout.activity_music_activity_main);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //to add back arrow at top;
+
+
+
+        //--- Spinner feature start
+
+        Spinner spinner = (Spinner) findViewById(R.id.music_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> spinadapter = ArrayAdapter.createFromResource(this,
+                R.array.music_genres, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        spinadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(spinadapter);
+
+        //--- Spinner feature end
 
         ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
         for (int i = 0; i < Music.sMusicStrings.length; ++i) {
