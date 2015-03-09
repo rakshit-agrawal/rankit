@@ -85,6 +85,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         if(networkInfo != null && networkInfo.isConnected()) {
             new MakeGetRequest().execute(MOVIE_GET_REQUEST);
             // Parse operations
+            jsonActions();
         }
         else {
             //else cases
@@ -178,7 +179,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         return new String(buffer);
     }
 
-    public void jsonAction() {
+    public void jsonActions() {
         new PerformJsonOperations().execute();
 
     }
@@ -240,13 +241,6 @@ public class MoviesActivityMain extends ActionBarActivity {
 
             //jsonText.setText(fulltext);
         }
-
-        private void DisplayDetails(DataBox result) {
-
-            main_text.setText(result.name);
-
-        }
-
         public DataBox JsonOperations() throws IOException {
 
 
@@ -274,6 +268,15 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
         }
+
+
+        private void DisplayDetails(DataBox result) {
+
+            main_text.setText(result.name);
+
+        }
+
+
     }
 
 

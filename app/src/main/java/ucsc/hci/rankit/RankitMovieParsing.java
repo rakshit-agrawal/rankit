@@ -45,29 +45,51 @@ public class RankitMovieParsing {
         reader.beginObject();
 
         while (reader.hasNext()) {
-            String name = reader.nextName();
-            Log.d("Json Parsing", "Inside first stage of Json object reading");
+            //String name = reader.nextName();
+            //Log.d("Json Parsing", "Inside first stage of Json object reading");
+
+          //  try{
+           //     String name = reader.nextName();
+
+//            }finally {
+  //              reader.beginObject();
+
+    //        }
 
 
-            if (name.equals("data")) {
-                Log.d("Json Parsing", "Inside Current Observation");
-                reader.beginArray();
+
+           // if (name.equals("data")) {
+           //     Log.d("Json Parsing", "Inside Current Observation");
+                //reader.beginArray();
                 while (reader.hasNext()) {
-                    String l2_name = reader.nextName();
 
-                    if (l2_name.equals("name")) {
-                        movieData.name = reader.nextString();
-                        Log.d("Json Parsing", "Testing right now.");
-                    } else if (l2_name.equals("genre")) {
-                        movieData.genre = reader.nextString();
-                    } else {
-                        reader.skipValue();
+                    Log.d("Json Parsing", "Inside While loop for reader.hasNext");
+                    String l1_name = reader.nextName();
+                    Log.d("Json Parsing", l1_name);
+
+                    reader.beginArray();
+                    while (reader.hasNext()) {
+
+                        reader.beginObject();
+
+                        while (reader.hasNext()) {
+                            String l2_name = reader.nextName();
+
+
+                            if (l2_name.equals("name")) {
+                                movieData.name = reader.nextString();
+                                Log.d("Json Parsing", "Testing right now.");
+                            } else {
+                                reader.skipValue();
+                            }
+                        }
+                        reader.endObject();
                     }
 
-                }
+                //}
                 reader.endArray();
-            } else {
-                reader.skipValue();
+           // } else {
+            //    reader.skipValue();
             }
 
 
