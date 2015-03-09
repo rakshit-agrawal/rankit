@@ -1,5 +1,8 @@
 package ucsc.hci.rankit;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -44,14 +47,14 @@ public class ImagesActivityMain extends ActionBarActivity {
 
         ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
 
-        for (int i = 0; i < Book.sBookStrings.length; ++i) {
-            mObjectList.add(Book.sBookStrings[i]);
+        for (int i = 0; i < Image.sImageStrings.length; ++i) {
+            mObjectList.add(Image.sImageStrings[i]);
         }
 
         gridView = (DynamicGridView) findViewById(R.id.dynamic_grid);
         gridView.setAdapter(new DynamicGridAdapter(this,
-                new ArrayList<RankObjects>(Arrays.asList(Book.sBookStrings)),
-                getResources().getInteger(R.integer.column_count)));
+                new ArrayList<RankObjects>(Arrays.asList(Image.sImageStrings)),
+                getResources().getInteger(R.integer.column_count_images)));
 
 /*
         // add callback to stop edit mode if needed
@@ -114,5 +117,21 @@ public class ImagesActivityMain extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void selectFrag(View view) {
+        Fragment fr;
+
+        if (view == findViewById(R.id.button2)) {
+            fr = new ImageFragment();
+
+
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_place, fr);
+            fragmentTransaction.commit();
+
+        }
     }
 }
