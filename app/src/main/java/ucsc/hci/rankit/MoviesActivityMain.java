@@ -33,6 +33,9 @@ public class MoviesActivityMain extends ActionBarActivity {
     private static final String MOVIE_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=movies";
     private List<RankObjects> myObjects = new ArrayList<RankObjects>();
 
+    private List<MovieDataBox> listItems = new ArrayList<MovieDataBox>();
+
+
     private static final String DEBUG_TAG = "InternetActions";
 
     public InputStream is = null;
@@ -214,6 +217,8 @@ public class MoviesActivityMain extends ActionBarActivity {
     }
 
 
+    /*
+
     public class PerformJsonOperations extends AsyncTask<Void, Void, MovieDataBox> {
 
         protected MovieDataBox doInBackground(Void... params) {
@@ -230,11 +235,38 @@ public class MoviesActivityMain extends ActionBarActivity {
             }
         }
 
+        */
 
 
-        // onPostExecute displays the results of the AsyncTask.
+
+
+        private class PerformJsonOperations extends AsyncTask<Void, Void, List<MovieDataBox>>  {
+
+            protected List<MovieDataBox> doInBackground(Void... params) {
+
+                // params comes from the execute() call: params[0] is the url.
+                try {
+                    List<MovieDataBox> w = JsonOperations();
+                    Log.d("Json Parsing", "Logging from PerformJsonOperations");
+
+                    Log.d("Json Parsing", w.get(w.size() - 1).name);
+
+                    return w;
+
+                } catch (IOException e) {
+                    List<MovieDataBox> x = new ArrayList<MovieDataBox>();
+                    return x;
+
+                }
+            }
+
+
+
+
+            // onPostExecute displays the results of the AsyncTask.
         @Override
-        protected void onPostExecute(MovieDataBox result) {
+        protected void onPostExecute(List<MovieDataBox> result) {
+            Log.d("Json Parsing", "Reaching on Post Execute");
 
             DisplayDetails(result);
             //String icon_url = result.icon_url;
@@ -245,7 +277,7 @@ public class MoviesActivityMain extends ActionBarActivity {
 
             //jsonText.setText(fulltext);
         }
-        public MovieDataBox JsonOperations() throws IOException {
+        public List<MovieDataBox> JsonOperations() throws IOException {
 
 
             // JSON operations
@@ -253,6 +285,9 @@ public class MoviesActivityMain extends ActionBarActivity {
 
             RankitMovieParsing movieParse = new RankitMovieParsing();
             MovieDataBox movie_data = new MovieDataBox();
+            List<MovieDataBox> datalist = new ArrayList<MovieDataBox>();
+            Log.d("Json Parsing", "In Json Operations now");
+
 
             //Send the Input Stream to JSON Parser
             try {
@@ -260,7 +295,9 @@ public class MoviesActivityMain extends ActionBarActivity {
                 // Log.d("IN_STREAM from JsonOperations",instream_test);
 
 
-                movie_data = movieParse.ParseJson(is);
+                datalist = movieParse.ParseJson(is);
+                Log.d("Json Parsing", datalist.get(datalist.size() - 1).name);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             } finally{
@@ -270,15 +307,26 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
             //---------------
-            return movie_data;
+            return datalist;
 
 
         }
 
 
-        private void DisplayDetails(MovieDataBox result) {
+        private void DisplayDetails(List<MovieDataBox> result) {
 
-            main_text.setText(result.name);
+            Log.d("Json Parsing", "Inside DisplayDetails function");
+
+
+            String toShow = "Nothing";
+
+            for(int i = 0; i< result.size(); i++){
+                MovieDataBox el = result.get(i);
+
+                toShow = el.cover_art.toString();
+            }
+
+            main_text.setText(toShow);
 
         }
 
