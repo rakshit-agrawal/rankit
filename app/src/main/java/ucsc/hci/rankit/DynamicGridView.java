@@ -67,11 +67,17 @@ public class DynamicGridView extends GridView {
     private boolean mIsWaitingForScrollFinish = false;
     private int mScrollState = OnScrollListener.SCROLL_STATE_IDLE;
 
-    private boolean mIsEditMode = false;
+    // private boolean mIsEditMode = false;
+    // change to by default is edit mode.
+    private boolean mIsEditMode = true;
     private List<ObjectAnimator> mWobbleAnimators = new LinkedList<ObjectAnimator>();
     private boolean mHoverAnimation;
     private boolean mReorderAnimation;
-    private boolean mWobbleInEditMode = true;
+
+    //private boolean mWobbleInEditMode = true;
+    // change to by default wobble mode is not on.
+    private boolean mWobbleInEditMode = false;
+
     private boolean mIsEditModeEnabled = true;
 
     private OnScrollListener mUserScrollListener;

@@ -75,14 +75,9 @@ public class DynamicListView extends ListView {
 
     private int mTotalOffset = 0;
 
-    private int lastTouchedViewId = -1;
-    private long duration = System.currentTimeMillis();
-    private long LONG_CLICK_DURATION = 1000;
-
     private boolean mCellIsMobile = false;
     private boolean mIsMobileScrolling = false;
     private int mSmoothScrollAmountAtEdge = 0;
-    private boolean mIsDragging = false;
 
     private final int INVALID_ID = -1;
     private long mAboveItemId = INVALID_ID;
@@ -256,7 +251,6 @@ public class DynamicListView extends ListView {
             case MotionEvent.ACTION_DOWN:
                 mDownX = (int)event.getX();
                 mDownY = (int)event.getY();
-
                 mActivePointerId = event.getPointerId(0);
 
                 // This part has been copied from OnItemLongClickListener code above (which has now
@@ -282,7 +276,6 @@ public class DynamicListView extends ListView {
                     break;
                 }
 
-                if(mIsMobileScrolling || mIsWaitingForScrollFinish) break;
                 int pointerIndex = event.findPointerIndex(mActivePointerId);
 
                 mLastEventY = (int) event.getY(pointerIndex);
