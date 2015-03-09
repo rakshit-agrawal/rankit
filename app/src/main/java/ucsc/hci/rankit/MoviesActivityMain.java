@@ -15,13 +15,14 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.NetworkInterface;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -179,6 +180,9 @@ public class MoviesActivityMain extends ActionBarActivity {
         return new String(buffer);
     }
 
+
+    // JSON ACTIONS
+
     public void jsonActions() {
         new PerformJsonOperations().execute();
 
@@ -210,17 +214,17 @@ public class MoviesActivityMain extends ActionBarActivity {
     }
 
 
-    public class PerformJsonOperations extends AsyncTask<Void, Void, DataBox> {
+    public class PerformJsonOperations extends AsyncTask<Void, Void, MovieDataBox> {
 
-        protected DataBox doInBackground(Void... params) {
+        protected MovieDataBox doInBackground(Void... params) {
 
             // params comes from the execute() call: params[0] is the url.
             try {
-                DataBox w = JsonOperations();
+                MovieDataBox w = JsonOperations();
                 return w;
 
             } catch (IOException e) {
-                DataBox x = new DataBox();
+                MovieDataBox x = new MovieDataBox();
                 return x;
 
             }
@@ -230,7 +234,7 @@ public class MoviesActivityMain extends ActionBarActivity {
 
         // onPostExecute displays the results of the AsyncTask.
         @Override
-        protected void onPostExecute(DataBox result) {
+        protected void onPostExecute(MovieDataBox result) {
 
             DisplayDetails(result);
             //String icon_url = result.icon_url;
@@ -241,14 +245,14 @@ public class MoviesActivityMain extends ActionBarActivity {
 
             //jsonText.setText(fulltext);
         }
-        public DataBox JsonOperations() throws IOException {
+        public MovieDataBox JsonOperations() throws IOException {
 
 
             // JSON operations
 
 
             RankitMovieParsing movieParse = new RankitMovieParsing();
-            DataBox movie_data = new DataBox();
+            MovieDataBox movie_data = new MovieDataBox();
 
             //Send the Input Stream to JSON Parser
             try {
@@ -257,7 +261,9 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
                 movie_data = movieParse.ParseJson(is);
-            }finally{
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally{
 
             }
             //DisplayJson(movie_data);
@@ -270,7 +276,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         }
 
 
-        private void DisplayDetails(DataBox result) {
+        private void DisplayDetails(MovieDataBox result) {
 
             main_text.setText(result.name);
 

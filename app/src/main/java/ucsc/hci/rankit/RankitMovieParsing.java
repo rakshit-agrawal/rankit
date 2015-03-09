@@ -3,99 +3,210 @@ package ucsc.hci.rankit;
 import android.util.JsonReader;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by rakshit on 3/8/15.
  */
 public class RankitMovieParsing {
 
+
     public JsonReader reader;
 
-    public DataBox ParseJson(InputStream instream) throws IOException, UnsupportedEncodingException {
-        DataBox movieData = new DataBox();
+    public JSONObject jsonResponse;
+
+    public MovieDataBox ParseJson(InputStream instream) throws IOException, UnsupportedEncodingException, JSONException {
+        MovieDataBox movieData = new MovieDataBox();
 
         Reader name_reader = null;
         name_reader = new InputStreamReader(instream, "UTF-8");
 
-        reader = new JsonReader(name_reader);
+
+        BufferedReader r = new BufferedReader(new InputStreamReader(instream));
+        StringBuilder total = new StringBuilder();
+        String line;
+        while ((line = r.readLine()) != null) {
+            total.append(line);
+        }
+
+        //reader = new JsonReader(name_reader);
+        jsonResponse = new JSONObject(total.toString());
 
         try {
-            movieData = ParseJsonInternal(reader);
+            //movieData = ParseJsonInternal(reader);
+            movieData = ParseJsonFunction(jsonResponse);
 
-        } finally {
-            reader.close();
+        } catch (NullPointerException e) {
         }
 
         return movieData;
 
     }
 
-    public DataBox ParseJsonInternal(JsonReader reader) throws IOException {
+    public MovieDataBox ParseJsonFunction(JSONObject jsonResponse) throws IOException, JSONException {
 
-        DataBox movieData = new DataBox();
+
+
+        MovieDataBox movieData = new MovieDataBox();
+
+
 
 
         Log.d("Json Parsing", "Inside ParseJsonInternal function");
 
-        reader.beginObject();
 
-        while (reader.hasNext()) {
-            //String name = reader.nextName();
-            //Log.d("Json Parsing", "Inside first stage of Json object reading");
-
-          //  try{
-           //     String name = reader.nextName();
-
-//            }finally {
-  //              reader.beginObject();
-
-    //        }
+        try {
 
 
+            /***** Returns the value mapped by name if it exists and is a JSONArray. ***/
+            /*******  Returns null otherwise.  *******/
+            JSONArray jsonMainNode = jsonResponse.optJSONArray("data");
 
-           // if (name.equals("data")) {
-           //     Log.d("Json Parsing", "Inside Current Observation");
-                //reader.beginArray();
-                while (reader.hasNext()) {
+            /*********** Process each JSON Node ************/
 
-                    Log.d("Json Parsing", "Inside While loop for reader.hasNext");
-                    String l1_name = reader.nextName();
-                    Log.d("Json Parsing", l1_name);
+            int lengthJsonArr = jsonMainNode.length();
 
-                    reader.beginArray();
-                    while (reader.hasNext()) {
+            for (int i = 0; i < lengthJsonArr; i++) {
+                /****** Get Object for each JSON node.***********/
+                JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
 
-                        reader.beginObject();
+                /******* Fetch node values **********/
 
-                        while (reader.hasNext()) {
-                            String l2_name = reader.nextName();
+            try {
+                movieData.name = jsonChildNode.optString("name").toString();
 
 
-                            if (l2_name.equals("name")) {
-                                movieData.name = reader.nextString();
-                                Log.d("Json Parsing", "Testing right now.");
-                            } else {
-                                reader.skipValue();
-                            }
-                        }
-                        reader.endObject();
-                    }
+            } catch (Exception e){
+                movieData.name = "";
 
-                //}
-                reader.endArray();
-           // } else {
-            //    reader.skipValue();
             }
 
+                try {
+                    movieData.cover_art = jsonChildNode.optString("cover_art").toString();
 
+
+                } catch (Exception e){
+                    movieData.cover_art = "";
+
+                }
+
+                try {
+                    movieData.doi = jsonChildNode.optString("doi").toString();
+
+
+                } catch (Exception e){
+                    movieData.doi = "";
+
+                }
+
+                try {
+                    movieData.description = jsonChildNode.optString("description").toString();
+
+
+                } catch (Exception e){
+                    movieData.description = "";
+
+                }
+
+
+
+                try {
+                    movieData.item_id = Integer.parseInt(jsonChildNode.optString("id").toString());
+
+
+                } catch (Exception e){
+                    movieData.item_id = 0;
+
+                }
+
+
+
+                try {
+                    movieData.director = Integer.parseInt(jsonChildNode.optString("director").toString());
+
+
+                } catch (Exception e){
+                    movieData.director = 0;
+
+                }
+
+
+
+                try {
+                    movieData.lead_actor_female = Integer.parseInt(jsonChildNode.optString("lead_actor_female").toString());
+
+
+                } catch (Exception e){
+                    movieData.lead_actor_female = 0;
+
+                }
+
+
+                try {
+                    movieData.lead_actor_male = Integer.parseInt(jsonChildNode.optString("lead_actor_male").toString());
+
+
+                } catch (Exception e){
+                    movieData.lead_actor_male = 0;
+
+                }
+
+
+                try {
+                    movieData.genre = Integer.parseInt(jsonChildNode.optString("genre").toString());
+
+
+                } catch (Exception e){
+                    movieData.genre = 0;
+
+                }
+
+
+                try {
+                    movieData.imdb_url = jsonChildNode.optString("imdb_url").toString();
+
+
+                } catch (Exception e){
+                    movieData.imdb_url = "";
+
+                }
+
+                try {
+                    movieData.wikipedia_url = jsonChildNode.optString("wikipedia_url").toString();
+
+
+                } catch (Exception e){
+                    movieData.wikipedia_url = "";
+
+                }
+
+
+
+
+            }
+        } catch (JSONException e) {
+
+            e.printStackTrace();
         }
-        reader.endObject();
+
+
+
 
         return movieData;
+
+
     }
+
+
+
 }
