@@ -14,6 +14,8 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
         super(context, items, columnCount);
     }
 
+    int[] colorsBlue = new int[] {R.color.blue1, R.color.blue2, R.color.blue3, R.color.blue4};
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         CheeseViewHolder holder;
@@ -24,7 +26,7 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
         } else {
             holder = (CheeseViewHolder) convertView.getTag();
         }
-        holder.build(position);
+        holder.build(position,convertView);
         return convertView;
     }
 
@@ -38,13 +40,16 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
             image = (ImageView) view.findViewById(R.id.item_img);
             image.setPadding(10, 10, 10, 10);
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
+
+
             titleText = (TextView) view.findViewById(R.id.item_title);
         }
 
-        void build(int position) {
+        void build(int position, View view) {
             RankObjects cObj = (RankObjects) getItem(position);
             rankText.setText(""+(position+1));
             image.setImageResource(cObj.getIconID());
+            image.setBackgroundColor(view.getResources().getColor(colorsBlue[position]));
             titleText.setText(cObj.getTitle());
         }
     }

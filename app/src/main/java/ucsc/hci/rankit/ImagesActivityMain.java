@@ -1,8 +1,5 @@
 package ucsc.hci.rankit;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -119,7 +116,7 @@ public class ImagesActivityMain extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+/*
     public void selectFrag(View view) {
         Fragment fr;
 
@@ -134,4 +131,5 @@ public class ImagesActivityMain extends ActionBarActivity {
 
         }
     }
+*/
 }
