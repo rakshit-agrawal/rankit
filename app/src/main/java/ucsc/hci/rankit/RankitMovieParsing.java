@@ -30,6 +30,8 @@ public class RankitMovieParsing {
 
 
 
+
+
     public List<MovieDataBox> ParseJson(InputStream instream) throws IOException, UnsupportedEncodingException, JSONException {
         MovieDataBox movieData = new MovieDataBox();
 
@@ -51,6 +53,12 @@ public class RankitMovieParsing {
             //movieData = ParseJsonInternal(reader);
             datalist = ParseJsonFunction(jsonResponse);
 
+
+
+            Log.d("ParsebaseNames",datalist.get(datalist.size()-2).name);
+
+
+
         } catch (NullPointerException e) {
         }
 
@@ -59,10 +67,6 @@ public class RankitMovieParsing {
     }
 
     public List<MovieDataBox> ParseJsonFunction(JSONObject jsonResponse) throws IOException, JSONException {
-
-
-
-        MovieDataBox movieData = new MovieDataBox();
 
 
 
@@ -86,6 +90,7 @@ public class RankitMovieParsing {
                 JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
 
                 /******* Fetch node values **********/
+                MovieDataBox movieData = new MovieDataBox();
 
                 try {
                     movieData.name = jsonChildNode.optString("name").toString();
@@ -199,9 +204,21 @@ public class RankitMovieParsing {
 
                 }
 
+                Log.d("ParsetimeNames",movieData.name);
+
 
 
                 datalist.add(movieData);
+
+
+
+
+                Log.d("ParsetimeNames",datalist.get(datalist.size()-1).name);
+
+                for(int j = 0;j<datalist.size();j++){
+                    Log.d("InsideLoopNames",datalist.get(j).name);
+
+                }
 
 
 
@@ -212,6 +229,11 @@ public class RankitMovieParsing {
         } catch (JSONException e) {
 
             e.printStackTrace();
+        }
+
+        for(int i = 0;i<datalist.size();i++){
+            Log.d("ParseLoopNames",datalist.get(i).name);
+
         }
 
 

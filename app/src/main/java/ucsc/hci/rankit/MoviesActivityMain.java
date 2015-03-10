@@ -344,7 +344,12 @@ public class MoviesActivityMain extends ActionBarActivity {
             }
             //DisplayJson(movie_data);
 
-            BigList = datalist;
+            for (int i = 0; i < datalist.size(); i++) {
+                Log.d("MovieName",datalist.get(i).name);
+            }
+
+
+                BigList = datalist;
 
 
             //---------------
@@ -368,6 +373,8 @@ public class MoviesActivityMain extends ActionBarActivity {
                 String director = itemList.get(i).director;
                 String img_url = itemList.get(i).cover_art;
 
+                Log.d("Name of Movie", name);
+
                 String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + img_url;
 
                 //URL url = new URL(full_url);
@@ -384,7 +391,9 @@ public class MoviesActivityMain extends ActionBarActivity {
 
             for (int i = 0; i < mObjectList.size(); ++i) {
                 Log.d("Show Items", mObjectList.get(i).getTitle());
-                mObjectList.get(i).setTitle("test");
+                mObjectList.get(i).setTitle(result.get(i).name);
+                mObjectList.get(i).setDirector(result.get(i).director);
+                //mObjectList.get(i).setIcon(result.get(i).cover_art);
             }
 
 

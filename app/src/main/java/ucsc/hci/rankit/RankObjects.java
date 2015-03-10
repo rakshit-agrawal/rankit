@@ -1,6 +1,11 @@
 package ucsc.hci.rankit;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class RankObjects {
     private ObjType type;
@@ -18,6 +23,14 @@ public class RankObjects {
 
     public String getDirector() {
         return director;
+
+
+    }
+
+
+    public void setDirector(String x) {
+        this.director = x;
+        // return title;
     }
 
     public String getTitle() {
@@ -33,6 +46,21 @@ public class RankObjects {
     public Bitmap getIcon() {
         return icon;
     }
+
+
+    public void setIcon(String x) throws IOException {
+        //this.director = x;
+
+        String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + x;
+
+        URL url = new URL(full_url);
+        Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+
+        this.icon = bmp;
+
+        // return title;
+    }
+
     public int getIconID() {
         return iconID;
     }
