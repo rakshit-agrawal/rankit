@@ -97,7 +97,9 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
         ImageView imageView = (ImageView) itemView.findViewById(R.id.item_image);
 
         //RoundedImageView imageView = (RoundedImageView) itemView.findViewById(R.id.item_image);
-        imageView.setImageResource(currentObjects.getIconID());
+        //imageView.setImageResource(currentObjects.getIconID());
+        imageView.setImageBitmap(currentObjects.getIcon());
+
         imageView.setPadding(10, 10, 10, 10);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 

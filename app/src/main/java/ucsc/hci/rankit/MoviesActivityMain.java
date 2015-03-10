@@ -2,6 +2,8 @@ package ucsc.hci.rankit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -23,6 +25,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +33,13 @@ import java.util.List;
 
 public class MoviesActivityMain extends ActionBarActivity {
 
-    private static final String MOVIE_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=movies";
-    private List<RankObjects> myObjects = new ArrayList<RankObjects>();
+    private static final String MOVIE_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=movies&count=4";
+    private ArrayList<RankObjects> myObjects = new ArrayList<RankObjects>();
 
     private List<MovieDataBox> listItems = new ArrayList<MovieDataBox>();
+
+    public ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
+
 
 
     private static final String DEBUG_TAG = "InternetActions";
@@ -66,11 +72,14 @@ public class MoviesActivityMain extends ActionBarActivity {
 
         internetActions();
 
-        ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
+        //ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
 
+        //mObjectList = BigList;
         for (int i = 0; i < Movie.sMovieStrings.length; ++i) {
             mObjectList.add(Movie.sMovieStrings[i]);
         }
+
+        Log.d("Big List", mObjectList.toString());
 
         StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.item_view, mObjectList);
         DynamicListView listView = (DynamicListView) findViewById(R.id.MoviesListView);
@@ -188,6 +197,8 @@ public class MoviesActivityMain extends ActionBarActivity {
 
     public void jsonActions() {
         new PerformJsonOperations().execute();
+        Log.d("JSON", "Reached JsonActions");
+
 
     }
 
@@ -268,7 +279,13 @@ public class MoviesActivityMain extends ActionBarActivity {
         protected void onPostExecute(List<MovieDataBox> result) {
             Log.d("Json Parsing", "Reaching on Post Execute");
 
-            DisplayDetails(result);
+            try {
+                mObjectList = DisplayDetails(result);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d("mObject List", mObjectList.toString());
+
             //String icon_url = result.icon_url;
             // String icon = result.icon_name;
             // String text3 = result.relative_humidity;
@@ -276,6 +293,8 @@ public class MoviesActivityMain extends ActionBarActivity {
             //  String fulltext = icon_url + icon + text3;
 
             //jsonText.setText(fulltext);
+
+            //return mObjectList;
         }
         public List<MovieDataBox> JsonOperations() throws IOException {
 
@@ -313,9 +332,31 @@ public class MoviesActivityMain extends ActionBarActivity {
         }
 
 
-        private void DisplayDetails(List<MovieDataBox> result) {
+        private ArrayList<RankObjects> DisplayDetails(List<MovieDataBox> result) throws IOException {
 
             Log.d("Json Parsing", "Inside DisplayDetails function");
+
+            //BigList = result;
+
+            List<MovieDataBox> itemList = result;
+
+            for (int i = 0; i < itemList.size(); i++) {
+
+                String name = itemList.get(i).name;
+                String director = itemList.get(i).director;
+                String img_url = itemList.get(i).cover_art;
+
+                String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + img_url;
+
+                //URL url = new URL(full_url);
+                //Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+
+                Log.d("Big List", mObjectList.toString());
+
+                //mObjectList.add(new RankObjects(name, director, bmp, ObjType.MOVIES));
+                Log.d("Big List", mObjectList.toString());
+
+            }
 
 
             String toShow = "Nothing";
@@ -328,7 +369,11 @@ public class MoviesActivityMain extends ActionBarActivity {
 
             main_text.setText(toShow);
 
+            return mObjectList;
+
+
         }
+
 
 
     }

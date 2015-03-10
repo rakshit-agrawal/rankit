@@ -139,42 +139,44 @@ public class RankitMovieParsing {
 
 
                 try {
-                    movieData.director = Integer.parseInt(jsonChildNode.optString("director").toString());
+                    movieData.director = jsonChildNode.optString("director").toString();
 
 
                 } catch (Exception e){
-                    movieData.director = 0;
+                    movieData.director = "";
 
                 }
 
 
 
                 try {
-                    movieData.lead_actor_female = Integer.parseInt(jsonChildNode.optString("lead_actor_female").toString());
+                    movieData.lead_actor_female = jsonChildNode.optString("lead_actor_female").toString();
+
 
 
                 } catch (Exception e){
-                    movieData.lead_actor_female = 0;
+                    movieData.lead_actor_female = "";
 
                 }
 
 
                 try {
-                    movieData.lead_actor_male = Integer.parseInt(jsonChildNode.optString("lead_actor_male").toString());
+                    movieData.lead_actor_male = jsonChildNode.optString("lead_actor_male").toString();
 
 
                 } catch (Exception e){
-                    movieData.lead_actor_male = 0;
+                    movieData.lead_actor_male = "";
 
                 }
 
 
                 try {
-                    movieData.genre = Integer.parseInt(jsonChildNode.optString("genre").toString());
+                    movieData.genre = jsonChildNode.optString("genre").toString();
+
 
 
                 } catch (Exception e){
-                    movieData.genre = 0;
+                    movieData.genre = "";
 
                 }
 

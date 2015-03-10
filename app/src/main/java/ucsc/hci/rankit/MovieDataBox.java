@@ -9,12 +9,12 @@ public final class MovieDataBox {
     public String name;
     public String doi;
     public String cover_art;
-    public Integer director;
+    public String director;
     public String imdb_url;
     public String wikipedia_url;
-    public Integer genre;
-    public Integer lead_actor_male;
-    public Integer lead_actor_female;
+    public String genre;
+    public String lead_actor_male;
+    public String lead_actor_female;
     public String description;
 
     public MovieDataBox(){
@@ -23,12 +23,12 @@ public final class MovieDataBox {
         this.name = "";
         this.doi = "";
         this.cover_art = "";
-        this.director = 0;
+        this.director = "";
         this.imdb_url = "";
         this.wikipedia_url = "";
-        this.genre = 0;
-        this.lead_actor_male = 0;
-        this.lead_actor_female = 0;
+        this.genre = "";
+        this.lead_actor_male = "";
+        this.lead_actor_female = "";
         this.description = "";
 
 
