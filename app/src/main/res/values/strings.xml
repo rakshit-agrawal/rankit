@@ -14,6 +14,10 @@
     <string name="images_button">Images</string>
     <string name="title_activity_books_activity_main">BooksActivityMain</string>
     <string name="helpPath">Help Screen</string>
+    <string name="user_id">Governator93</string>
+    <string name="user_bio">User Bio \n\nI like good action films with a strong male lead and tons of explosions and shooting. I also enjoy classical music.</string>
+    <string name="user_activity"> governator93 linked his account to facebook \n\ngovernator93 ranked action movies \n\ngovernator93 ranked classical music</string>
+
 
     <string name="title_activity_movies_activity_main">MoviesActivityMain</string>
     <string name="title_activity_music_activity_main">MusicActivityMain</string>
@@ -99,5 +103,6 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_user_statistics">UserStatistics</string>
 
 </resources>
