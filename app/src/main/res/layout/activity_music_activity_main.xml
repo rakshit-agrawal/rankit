@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/main_text"
-            android:text="@string/movies_button"
+            android:text="@string/music_button"
             android:textSize="@dimen/abc_text_size_large_material"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

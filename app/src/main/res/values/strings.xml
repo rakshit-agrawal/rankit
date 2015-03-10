@@ -24,11 +24,17 @@
     <string name="item_prompt">Select</string>
     <string name="user_welcome_text">Welcome User!</string>
 
+<<<<<<< HEAD
     <string name="connection_error">
         No network connection available!\nPlease connect to the internet.</string>
     <string name="try_again_error">
         Unable to fetch data. Please try again.</string>
 
+=======
+    <item type="id" name="dgv_wobble_tag"/>
+    <integer name="column_count">2</integer>
+    <integer name="column_count_images">4</integer>
+>>>>>>> origin/yanfei3
 
     <item name="black" type="color">#000000</item>
     <item name="black1" type="color">#212121</item>
@@ -43,18 +49,24 @@
     <item name="darkgreen" type="color">#FF669900</item>
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
-    <item name="red1" type="color">#C62828</item>
-    <item name="red2" type="color">#E53935</item>
-    <item name="red3" type="color">#EF5350</item>
-    <item name="red4" type="color">#E57373</item>
-    <item name="purple1" type="color">#4527A0</item>
-    <item name="purple2" type="color">#5E35B1</item>
-    <item name="purple3" type="color">#7E57C2</item>
-    <item name="purple4" type="color">#B39DDB</item>
-    <item name="green1" type="color">#2E7D32</item>
-    <item name="green2" type="color">#43A047</item>
-    <item name="green3" type="color">#66BB6A</item>
-    <item name="green4" type="color">#81C784</item>
+
+    <item name="red1" type="color">#FFFF3030</item>
+    <item name="red2" type="color">#DDFF3030</item>
+    <item name="red3" type="color">#BBFF3030</item>
+    <item name="red4" type="color">#99FF3030</item>
+    <item name="purple1" type="color">#FFA643C7</item>
+    <item name="purple2" type="color">#DDA643C7</item>
+    <item name="purple3" type="color">#BBA643C7</item>
+    <item name="purple4" type="color">#99A643C7</item>
+    <item name="green1" type="color">#FF1FBC5A</item>
+    <item name="green2" type="color">#DD1FBC5A</item>
+    <item name="green3" type="color">#BB1FBC5A</item>
+    <item name="green4" type="color">#991FBC5A</item>
+    <item name="blue1" type="color">#FF0099CC</item>
+    <item name="blue2" type="color">#DD0099CC</item>
+    <item name="blue3" type="color">#BB0099CC</item>
+    <item name="blue4" type="color">#990099CC</item>
+
     <item name="bottom_bar_grey" type="color">#e3e3e3</item>
 
     <integer-array name="androidcolors">
@@ -82,5 +94,13 @@
     <string-array name="music_genres">
         <item>Classic Rock</item>
     </string-array>
+
+    <string-array name="images_categories">
+        <item>Modern</item>
+        <item>Abstract</item>
+    </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

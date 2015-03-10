@@ -89,7 +89,7 @@
         android:layout_centerHorizontal="true"
         >
 
-
+<!--
         <GridView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/gridview"
             android:layout_marginTop="20dp"
@@ -102,8 +102,15 @@
             android:stretchMode="columnWidth"
             android:gravity="center"
             />
+-->
 
 
+        <ucsc.hci.rankit.DynamicGridView
+            android:id="@+id/dynamic_grid"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:numColumns="@integer/column_count"
+            />
 
 
 

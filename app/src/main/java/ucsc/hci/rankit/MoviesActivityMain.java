@@ -30,11 +30,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MoviesActivityMain extends ActionBarActivity {
 
+<<<<<<< HEAD
     private static final String MOVIE_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=movies&count=4";
     private ArrayList<RankObjects> myObjects = new ArrayList<RankObjects>();
 
@@ -54,6 +54,9 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
     public TextView main_text;
+=======
+//    private List<RankObjects> myObjects = new ArrayList<RankObjects>();
+>>>>>>> origin/yanfei3
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +64,12 @@ public class MoviesActivityMain extends ActionBarActivity {
         setContentView(R.layout.activity_movies_activity_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+<<<<<<< HEAD
 
         main_text = (TextView)findViewById(R.id.main_text);
 
+=======
+>>>>>>> origin/yanfei3
         //--- Spinner feature start
 
         Spinner spinner = (Spinner) findViewById(R.id.movies_spinner);
