@@ -73,19 +73,14 @@
 
     <string-array name="books_categories">
         <item>Featured</item>
-        <item>Mystery</item>
     </string-array>
 
     <string-array name="movies_genres">
         <item>Featured</item>
-        <item>Action</item>
-        <item>Comedy</item>
     </string-array>
 
     <string-array name="music_genres">
         <item>Classic Rock</item>
-        <item>Alternative</item>
-        <item>Metal</item>
     </string-array>
 
 </resources>

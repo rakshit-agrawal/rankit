@@ -51,10 +51,10 @@ public class Movie {
     }*/
 
     {
-            new RankObjects("Avengers", "Joss Whedon", bmp, ObjType.MOVIES),
-            new RankObjects("Avatar", "James Cameron", bmp, ObjType.MOVIES),
-            new RankObjects("Titanic", "James Cameron", bmp, ObjType.MOVIES),
-            new RankObjects("The Dark Knight", "Christopher Nolan", bmp, ObjType.MOVIES)
+            new RankObjects("Loading... ", " ", bmp, ObjType.MOVIES),
+            new RankObjects("Loading... ", " ", bmp, ObjType.MOVIES),
+            new RankObjects("Loading... ", " ", bmp, ObjType.MOVIES),
+            new RankObjects("Loading... ", " ", bmp, ObjType.MOVIES)
 
             /*
 

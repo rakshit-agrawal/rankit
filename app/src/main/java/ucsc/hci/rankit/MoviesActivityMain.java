@@ -146,7 +146,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            main_text.setText(result);
+            //main_text.setText(result);
         }
     }
 
@@ -392,7 +392,8 @@ public class MoviesActivityMain extends ActionBarActivity {
             for (int i = 0; i < mObjectList.size(); ++i) {
                 Log.d("Show Items", mObjectList.get(i).getTitle());
                 mObjectList.get(i).setTitle(result.get(i).name);
-                mObjectList.get(i).setDirector(result.get(i).director);
+                mObjectList.get(i).setDirector(" ");
+                mObjectList.get(i).setItemID(result.get(i).item_id);
                 //mObjectList.get(i).setIcon(result.get(i).cover_art);
             }
 
@@ -405,7 +406,7 @@ public class MoviesActivityMain extends ActionBarActivity {
                 toShow = el.name.toString();
             }
 
-            main_text.setText(toShow);
+            //main_text.setText(toShow);
 
             return mObjectList;
 

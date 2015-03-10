@@ -25,7 +25,7 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:src="@drawable/uptown_funk"
+            android:src="@drawable/ic_action_person"
             />
 
         <TextView

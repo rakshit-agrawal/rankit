@@ -13,6 +13,7 @@ public class RankObjects {
     private String director;
     private int iconID;
     private Bitmap icon;
+    private Integer item_id;
 
     public RankObjects(String title, String director, Bitmap icon, ObjType type) {
         this.title = title;
@@ -20,6 +21,13 @@ public class RankObjects {
         this.icon = icon;
         this.type = type;
     }
+
+
+    public void setItemID(Integer x) {
+        this.item_id = x;
+        // return title;
+    }
+
 
     public String getDirector() {
         return director;
