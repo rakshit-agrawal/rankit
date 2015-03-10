@@ -24,6 +24,12 @@ public class RankObjects {
         return title;
     }
 
+
+    public void setTitle(String x) {
+        this.title = x;
+       // return title;
+    }
+
     public Bitmap getIcon() {
         return icon;
     }

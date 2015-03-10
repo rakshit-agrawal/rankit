@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.test.IsolatedContext;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,8 @@ public class MoviesActivityMain extends ActionBarActivity {
     private List<MovieDataBox> listItems = new ArrayList<MovieDataBox>();
 
     public ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
+    public List<MovieDataBox> BigList = new ArrayList<MovieDataBox>();
+
 
 
 
@@ -75,11 +78,27 @@ public class MoviesActivityMain extends ActionBarActivity {
         //ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
 
         //mObjectList = BigList;
+
         for (int i = 0; i < Movie.sMovieStrings.length; ++i) {
             mObjectList.add(Movie.sMovieStrings[i]);
+            Log.d("Items in display", mObjectList.get(i).getTitle());
         }
 
-        Log.d("Big List", mObjectList.toString());
+
+        /*
+        //for (int i = 0; i < BigList.size(); ++i) {
+            for (int j=0; j< mObjectList.size(); j++) {
+
+                mObjectList.get(j).setTitle(BigList.get(j).name);
+
+                Log.d("Object list title", mObjectList.get(j).getTitle());
+
+            }
+        //}
+
+        */
+
+
 
         StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.item_view, mObjectList);
         DynamicListView listView = (DynamicListView) findViewById(R.id.MoviesListView);
@@ -87,6 +106,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         listView.setObjectList(mObjectList);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
     }
 
     private void internetActions() {
@@ -324,6 +344,8 @@ public class MoviesActivityMain extends ActionBarActivity {
             }
             //DisplayJson(movie_data);
 
+            BigList = datalist;
+
 
             //---------------
             return datalist;
@@ -359,12 +381,19 @@ public class MoviesActivityMain extends ActionBarActivity {
             }
 
 
+
+            for (int i = 0; i < mObjectList.size(); ++i) {
+                Log.d("Show Items", mObjectList.get(i).getTitle());
+                mObjectList.get(i).setTitle("test");
+            }
+
+
             String toShow = "Nothing";
 
             for(int i = 0; i< result.size(); i++){
                 MovieDataBox el = result.get(i);
 
-                toShow = el.cover_art.toString();
+                toShow = el.name.toString();
             }
 
             main_text.setText(toShow);
