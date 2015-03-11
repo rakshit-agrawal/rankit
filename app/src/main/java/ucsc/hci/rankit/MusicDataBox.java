@@ -9,12 +9,12 @@ public final class MusicDataBox {
     public String name;
     public String publish_year;
     public String album_art;
-    public Integer artist;
+    public String artist;
     public String label;
     public String wikipedia_url;
-    public Integer genre;
-    public Integer composer;
-    public Integer lyricist;
+    public String genre;
+    public String composer;
+    public String lyricist;
     public String beats_url;
     public String description;
 
@@ -24,12 +24,12 @@ public final class MusicDataBox {
         this.name = "";
         this.publish_year = "";
         this.album_art = "";
-        this.artist = 0;
+        this.artist = "";
         this.label = "";
         this.wikipedia_url = "";
-        this.genre = 0;
-        this.composer = 0;
-        this.lyricist = 0;
+        this.genre = "";
+        this.composer = "";
+        this.lyricist = "";
         this.beats_url = "";
         this.description = "";
 

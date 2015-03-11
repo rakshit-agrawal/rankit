@@ -24,17 +24,14 @@
     <string name="item_prompt">Select</string>
     <string name="user_welcome_text">Welcome User!</string>
 
-<<<<<<< HEAD
     <string name="connection_error">
         No network connection available!\nPlease connect to the internet.</string>
     <string name="try_again_error">
         Unable to fetch data. Please try again.</string>
 
-=======
     <item type="id" name="dgv_wobble_tag"/>
     <integer name="column_count">2</integer>
     <integer name="column_count_images">4</integer>
->>>>>>> origin/yanfei3
 
     <item name="black" type="color">#000000</item>
     <item name="black1" type="color">#212121</item>
@@ -92,7 +89,7 @@
     </string-array>
 
     <string-array name="music_genres">
-        <item>Classic Rock</item>
+        <item>Featured</item>
     </string-array>
 
     <string-array name="images_categories">
@@ -102,5 +99,10 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rankit_desc">A crowdsourced ranking platform</string>
+    <string name="skip_login">Skip Login</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 
 </resources>

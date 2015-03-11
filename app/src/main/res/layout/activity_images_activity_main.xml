@@ -105,7 +105,7 @@
         -->
 
 
-        <ucsc.hci.rankit.DynamicGridView
+        <ucsc.hci.rankit.DynamicImageGridView
             android:id="@+id/dynamic_grid"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
