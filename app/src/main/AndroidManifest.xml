@@ -6,21 +6,17 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:allowBackup="true"
         android:name=".RankItApp"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <meta-data
             android:name="com.crashlytics.ApiKey"
             android:value="1ac9a68cf46f86da225f6469f7edf72de5a5e94f" />
-
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <activity
             android:name=".MainActivity"
@@ -31,10 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-
         <activity
             android:name=".MenuPageActivity"
             android:label="@string/title_activity_menu_page"
@@ -58,7 +50,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
-
         </activity>
         <activity
             android:name=".MusicActivityMain"
@@ -67,7 +58,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
-
         </activity>
         <activity
             android:name=".ImagesActivityMain"
@@ -76,6 +66,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
+        </activity>
+        <activity
+            android:name=".UserStatistics"
+            android:label="@string/title_activity_user_statistics" >
         </activity>
     </application>
 
