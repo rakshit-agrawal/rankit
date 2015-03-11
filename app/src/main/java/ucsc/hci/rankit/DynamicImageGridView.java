@@ -349,8 +349,8 @@ public class DynamicImageGridView extends GridView {
         return getAdapterInterface().getColumnCount();
     }
 
-    private DynamicGridAdapterInterface getAdapterInterface() {
-        return ((DynamicGridAdapterInterface) getAdapter());
+    private DynamicImageGridAdapterInterface getAdapterInterface() {
+        return ((DynamicImageGridAdapterInterface) getAdapter());
     }
 
     /**
@@ -736,7 +736,7 @@ public class DynamicImageGridView extends GridView {
             final int originalPosition = getPositionForView(mMobileView);
             int targetPosition = getPositionForView(targetView);
 
-            final DynamicGridAdapterInterface adapter = getAdapterInterface();
+            final DynamicImageGridAdapterInterface adapter = getAdapterInterface();
             if (targetPosition == INVALID_POSITION || !adapter.canReorder(originalPosition) || !adapter.canReorder(targetPosition)) {
                 updateNeighborViewsForId(mMobileItemId);
                 return;

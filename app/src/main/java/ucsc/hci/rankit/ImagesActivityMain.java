@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class ImagesActivityMain extends ActionBarActivity {
 
     private static final String TAG = ImagesActivityMain.class.getName();
-    private DynamicGridView gridView;
+    private DynamicImageGridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,8 @@ public class ImagesActivityMain extends ActionBarActivity {
             mObjectList.add(Image.sImageStrings[i]);
         }
 
-        gridView = (DynamicGridView) findViewById(R.id.dynamic_grid);
-        gridView.setAdapter(new DynamicGridAdapter(this,
+        gridView = (DynamicImageGridView) findViewById(R.id.dynamic_image_grid);
+        gridView.setAdapter(new DynamicImageGridAdapter(this,
                 new ArrayList<RankObjects>(Arrays.asList(Image.sImageStrings)),
                 getResources().getInteger(R.integer.column_count_images)));
 
@@ -65,7 +65,7 @@ public class ImagesActivityMain extends ActionBarActivity {
         });
 */
 
-        gridView.setOnDragListener(new DynamicGridView.OnDragListener() {
+        gridView.setOnDragListener(new DynamicImageGridView.OnDragListener() {
             @Override
             public void onDragStarted(int position) {
                 Log.d(TAG, "drag started at position " + position);

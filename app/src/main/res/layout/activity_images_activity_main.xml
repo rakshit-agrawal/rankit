@@ -44,7 +44,7 @@
             android:paddingRight="@dimen/abc_text_size_small_material"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:background="@color/darkblue"
+            android:background="@color/green2"
             />
 
 
@@ -61,7 +61,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:background="@color/darkblue"
+            android:background="@color/green2"
             android:textSize="@dimen/abc_text_size_medium_material"
             android:textColor="@color/white"
             android:paddingLeft="@dimen/abc_text_size_small_material"
@@ -103,6 +103,45 @@
                     android:gravity="center"
                     />
         -->
+        <!--
+        <fragment
+        android:name="ucsc.hci.rankit.ImageFragment"
+        android:id="@+id/fragment_place"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="256dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="64dp" />
+        -->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/abc_action_bar_default_height_material"
+            android:paddingRight="@dimen/abc_action_bar_default_height_material"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/image_0"/>
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/image_row_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/abc_action_bar_default_height_material"
+            android:layout_below="@+id/button_layout"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_centerHorizontal="true"
+            >
+
 
 
         <ucsc.hci.rankit.DynamicImageGridView
@@ -110,7 +149,6 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:numColumns="@integer/column_count_images"
-            android:layout_alignParentBottom="true"
             />
 
 
@@ -167,19 +205,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 -->
-    <fragment
-        android:name="ucsc.hci.rankit.ImageFragment"
-        android:id="@+id/fragment_place"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="256dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="64dp" />
-
-
-
 
 
 </RelativeLayout> <!-- End of base -->
