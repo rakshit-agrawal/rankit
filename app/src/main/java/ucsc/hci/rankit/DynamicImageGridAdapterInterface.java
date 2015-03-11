@@ -3,7 +3,7 @@ package ucsc.hci.rankit;
 /**
  * Any adapter used with DynamicGridView must implement DynamicGridAdapterInterface.
  * Adapter implementation also must has stable items id.
- * See {@link AbstractDynamicGridAdapter} for stable id implementation example.
+ * See {@link ucsc.hci.rankit.AbstractDynamicImageGridAdapter} for stable id implementation example.
  */
 
 public interface DynamicImageGridAdapterInterface {

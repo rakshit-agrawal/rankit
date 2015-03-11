@@ -55,7 +55,7 @@ public class ImagesActivityMain extends ActionBarActivity {
 
 /*
         // add callback to stop edit mode if needed
-        gridView.setOnDropListener(new DynamicGridView.OnDropListener()
+        gridView.setOnDropListener(new DynamicImageGridView.OnDropListener()
         {
             @Override
             public void onActionDrop()

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class DynamicImageGridAdapter extends BaseDynamicGridAdapter {
+public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
     public DynamicImageGridAdapter(Context context, List<RankObjects> items, int columnCount) {
         super(context, items, columnCount);
     }

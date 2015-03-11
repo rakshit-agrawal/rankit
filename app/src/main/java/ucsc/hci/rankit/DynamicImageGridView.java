@@ -96,8 +96,8 @@ public class DynamicImageGridView extends GridView {
     };
 
     private boolean mUndoSupportEnabled;
-    private Stack<DynamicGridModification> mModificationStack;
-    private DynamicGridModification mCurrentModification;
+    private Stack<DynamicImageGridModification> mModificationStack;
+    private DynamicImageGridModification mCurrentModification;
 
     private OnSelectedItemBitmapCreationListener mSelectedItemBitmapCreationListener;
     private View mMobileView;
@@ -206,7 +206,7 @@ public class DynamicImageGridView extends GridView {
     public void setUndoSupportEnabled(boolean undoSupportEnabled) {
         if (this.mUndoSupportEnabled != undoSupportEnabled) {
             if (undoSupportEnabled) {
-                this.mModificationStack = new Stack<DynamicGridModification>();
+                this.mModificationStack = new Stack<DynamicImageGridModification>();
             } else {
                 this.mModificationStack = null;
             }
@@ -218,7 +218,7 @@ public class DynamicImageGridView extends GridView {
     public void undoLastModification() {
         if (mUndoSupportEnabled) {
             if (mModificationStack != null && !mModificationStack.isEmpty()) {
-                DynamicGridModification modification = mModificationStack.pop();
+                DynamicImageGridModification modification = mModificationStack.pop();
                 undoModification(modification);
             }
         }
@@ -228,7 +228,7 @@ public class DynamicImageGridView extends GridView {
         if (mUndoSupportEnabled) {
             if (mModificationStack != null && !mModificationStack.isEmpty()) {
                 while (!mModificationStack.isEmpty()) {
-                    DynamicGridModification modification = mModificationStack.pop();
+                    DynamicImageGridModification modification = mModificationStack.pop();
                     undoModification(modification);
                 }
             }
@@ -252,7 +252,7 @@ public class DynamicImageGridView extends GridView {
         this.mSelectedItemBitmapCreationListener = selectedItemBitmapCreationListener;
     }
 
-    private void undoModification(DynamicGridModification modification) {
+    private void undoModification(DynamicImageGridModification modification) {
         for (Pair<Integer, Integer> transition : modification.getTransitions()) {
             reorderElements(transition.second, transition.first);
         }
@@ -471,7 +471,7 @@ public class DynamicImageGridView extends GridView {
                 if (mUndoSupportEnabled) {
                     if (mCurrentModification != null && !mCurrentModification.getTransitions().isEmpty()) {
                         mModificationStack.push(mCurrentModification);
-                        mCurrentModification = new DynamicGridModification();
+                        mCurrentModification = new DynamicImageGridModification();
                     }
                 }
 
@@ -722,8 +722,8 @@ public class DynamicImageGridView extends GridView {
                         && deltaXTotal > view.getLeft() + mOverlapIfSwitchStraightLine
                         || left(targetColumnRowPair, mobileColumnRowPair)
                         && deltaXTotal < view.getRight() - mOverlapIfSwitchStraightLine)) {
-                    float xDiff = Math.abs(DynamicGridUtils.getViewX(view) - DynamicGridUtils.getViewX(mMobileView));
-                    float yDiff = Math.abs(DynamicGridUtils.getViewY(view) - DynamicGridUtils.getViewY(mMobileView));
+                    float xDiff = Math.abs(DynamicImageGridUtils.getViewX(view) - DynamicImageGridUtils.getViewX(mMobileView));
+                    float yDiff = Math.abs(DynamicImageGridUtils.getViewY(view) - DynamicImageGridUtils.getViewY(mMobileView));
                     if (xDiff >= vX && yDiff >= vY) {
                         vX = xDiff;
                         vY = yDiff;
@@ -1129,11 +1129,11 @@ public class DynamicImageGridView extends GridView {
         }
     };
 
-    private static class DynamicGridModification {
+    private static class DynamicImageGridModification {
 
         private List<Pair<Integer, Integer>> transitions;
 
-        DynamicGridModification() {
+        DynamicImageGridModification() {
             super();
             this.transitions = new Stack<Pair<Integer, Integer>>();
         }

@@ -15,6 +15,7 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
     }
 
     int[] colorsBlue = new int[] {R.color.blue1, R.color.blue2, R.color.blue3, R.color.blue4};
+    int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
