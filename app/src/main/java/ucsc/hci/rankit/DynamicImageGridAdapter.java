@@ -48,7 +48,10 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
         void build(int position, View view) {
             RankObjects cObj = (RankObjects) getItem(position);
             rankText.setText(""+(position+1));
-            image.setImageResource(cObj.getIconID());
+            //image.setImageResource(cObj.getIconID());
+            image.setImageDrawable(cObj.getIcon());
+            image.setPadding(10, 10, 10, 10);
+            image.setMaxHeight(2);
             image.setBackgroundColor(view.getResources().getColor(colorsGreen[position]));
             titleText.setText(cObj.getTitle());
         }

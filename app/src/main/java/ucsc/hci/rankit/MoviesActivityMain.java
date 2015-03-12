@@ -94,6 +94,10 @@ public class MoviesActivityMain extends ActionBarActivity {
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
+
+
+
+
         }
 
         /*
@@ -410,15 +414,13 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
 
-                //Drawable item_img = Drawable.createFromStream()
-
-
-                /*
-
 
                 String img_url = itemList.get(i).cover_art;
+                Log.d("Cover Art",img_url);
 
                 String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + img_url;
+                Log.d("Cover URL",full_url);
+
 
                 try{
                     getImageActions(full_url);
@@ -426,11 +428,10 @@ public class MoviesActivityMain extends ActionBarActivity {
 
                 }
 
-                Drawable item_img = Drawable.createFromStream(is,"test");
+                Drawable item_img = Drawable.createFromStream(is2,"test");
 
+                mObjectList.get(i).setIcon(item_img);
 
-
-                */
 
 
 
@@ -469,7 +470,7 @@ public class MoviesActivityMain extends ActionBarActivity {
                 if(networkInfo != null && networkInfo.isConnected()) {
                     new MakeImageGetRequest().execute(full_url);
                     // Parse operations
-                    jsonActions();
+                    //jsonActions();
                 }
                 else {
                     //else cases

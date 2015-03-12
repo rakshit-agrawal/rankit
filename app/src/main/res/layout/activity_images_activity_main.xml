@@ -117,6 +117,7 @@
         -->
 
         <ImageView
+            android:id="@+id/big_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/abc_action_bar_default_height_material"

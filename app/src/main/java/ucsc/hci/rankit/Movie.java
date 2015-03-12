@@ -21,7 +21,7 @@ public class Movie {
 
     public static URL url;
     //public static Bitmap bmp; //= BitmapFactory.decodeStream(url.openConnection().getInputStream());
-    public static Drawable bmp;
+    static Drawable bmp;
 
     public static final RankObjects[] sMovieStrings = new RankObjects[]
 

@@ -13,9 +13,11 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +26,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 
 import java.util.ArrayList;
@@ -31,11 +34,14 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
+import ucsc.hci.rankit.ImagesActivityMain.*;
+
+
 
 public class DynamicImageGridView extends GridView {
     private static final int INVALID_ID = -1;
 
-    public ArrayList<RankObjects> mObjectList;
+    //public ArrayList<RankObjects> mObjectList
 
     private static final int MOVE_DURATION = 300;
     private static final int SMOOTH_SCROLL_AMOUNT_AT_EDGE = 8;
@@ -103,7 +109,7 @@ public class DynamicImageGridView extends GridView {
     private View mMobileView;
 
     public void setObjectList(ArrayList<RankObjects> objectList) {
-        mObjectList = objectList;
+        //mObjectList = objectList;
     }
 
     public DynamicImageGridView(Context context) {
@@ -434,6 +440,21 @@ public class DynamicImageGridView extends GridView {
                 if (mIsEditMode && isEnabled()) {
                     layoutChildren();
                     int position = pointToPosition(mDownX, mDownY);
+
+                    //This is where image changes
+
+
+
+                    Drawable currImage = ImagesActivityMain.mObjectList.get(position).getIcon();
+                    ImageView bigImage = (ImageView) findViewById(R.id.big_image);
+                    Log.d("Got image", currImage.toString());
+                    try{
+                        bigImage.setImageDrawable(currImage);
+                    } catch (Exception e){
+                        Log.d("Issue here:",e.toString());
+                    }
+
+
                     startDragAtPosition(position);
                 } else if (!isEnabled()) {
                     return false;
@@ -505,6 +526,11 @@ public class DynamicImageGridView extends GridView {
                 }
                 break;
 
+            case MotionEvent.ACTION_MASK:
+                break;
+
+
+
             default:
                 break;
         }
@@ -518,6 +544,12 @@ public class DynamicImageGridView extends GridView {
         int itemNum = position - getFirstVisiblePosition();
         View selectedView = getChildAt(itemNum);
         if (selectedView != null) {
+            try{
+                Log.d("Drawable Info",selectedView.getDrawableState().toString());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
             mMobileItemId = getAdapter().getItemId(position);
             if (mSelectedItemBitmapCreationListener != null)
                 mSelectedItemBitmapCreationListener.onPreSelectedItemBitmapCreation(selectedView, position, mMobileItemId);

@@ -1,5 +1,7 @@
 package ucsc.hci.rankit;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -8,9 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,6 +23,9 @@ public class ImagesActivityMain extends ActionBarActivity {
 
     private static final String TAG = ImagesActivityMain.class.getName();
     private DynamicImageGridView gridView;
+
+    public static ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +49,55 @@ public class ImagesActivityMain extends ActionBarActivity {
         //--- Spinner feature end
 
 
-        ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
 
         for (int i = 0; i < Image.sImageStrings.length; ++i) {
             mObjectList.add(Image.sImageStrings[i]);
         }
+
+
+
+        Resources res = getResources();
+        //Drawable d1 = res.getDrawable(R.drawable.image_2);
+        //Log.d("Got Image", d1.toString());
+
+
+
+        for (int i = 0; i < mObjectList.size(); ++i) {
+            Integer img_name=0;
+            Drawable d1;
+            switch (i){
+                case 0:{
+                    img_name = R.drawable.image_0;
+                    break;
+                }
+                case 1:{
+                    img_name = R.drawable.image_1;
+                    break;
+                }
+                case 2:{
+                    img_name = R.drawable.image_2;
+                    break;
+                }
+                case 3:{
+                    img_name = R.drawable.image_3;
+                    break;
+                }
+            }
+
+            d1 = res.getDrawable(img_name);
+
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            try {
+                Log.d("Inside try", d1.toString());
+
+                mObjectList.get(i).setIcon(d1);
+                Log.d("try done", d1.toString());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         gridView = (DynamicImageGridView) findViewById(R.id.dynamic_image_grid);
         gridView.setAdapter(new DynamicImageGridAdapter(this,
@@ -69,6 +120,13 @@ public class ImagesActivityMain extends ActionBarActivity {
             @Override
             public void onDragStarted(int position) {
                 Log.d(TAG, "drag started at position " + position);
+
+
+                Drawable currImage = mObjectList.get(position).getIcon();
+                ImageView bigImage = (ImageView) findViewById(R.id.big_image);
+                bigImage.setImageDrawable(currImage);
+
+
             }
 
             @Override

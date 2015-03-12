@@ -22,6 +22,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,11 +99,16 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
         //RoundedImageView imageView = (RoundedImageView) itemView.findViewById(R.id.item_image);
         //imageView.setImageResource(currentObjects.getIconID());
-        //imageView.setImageBitmap(currentObjects.getIcon());
+        //imageView.setImageDrawable(currentObjects.getIcon());
+        //Log.d("Setting image", currentObjects.getIcon().toString());
 
-        imageView.setImageDrawable(currentObjects.getIcon());
+        try {
+            imageView.setImageDrawable(currentObjects.getIcon());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
-        imageView.setPadding(10, 10, 10, 10);
+        //imageView.setPadding(10, 10, 10, 10);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 

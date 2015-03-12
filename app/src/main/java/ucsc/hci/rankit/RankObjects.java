@@ -13,10 +13,10 @@ public class RankObjects {
     private String title;
     private String director;
     private int iconID;
-    //private Bitmap icon;
+    private Drawable icon;
     private Integer item_id;
 
-    private Drawable icon;
+    //private Drawable icon;
 
 
     public RankObjects(String title, String director, Drawable icon, ObjType type) {

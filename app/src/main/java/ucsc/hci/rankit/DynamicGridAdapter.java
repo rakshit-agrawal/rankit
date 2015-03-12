@@ -49,7 +49,10 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
         void build(int position, View view) {
             RankObjects cObj = (RankObjects) getItem(position);
             rankText.setText(""+(position+1));
-            image.setImageResource(cObj.getIconID());
+            //image.setImageResource(cObj.getIconID());
+            image.setImageDrawable(cObj.getIcon());
+            image.setPadding(10, 10, 10, 10);
+            image.setMaxHeight(R.dimen.abc_action_bar_default_height_material);
             image.setBackgroundColor(view.getResources().getColor(colorsBlue[position]));
             titleText.setText(cObj.getTitle());
         }

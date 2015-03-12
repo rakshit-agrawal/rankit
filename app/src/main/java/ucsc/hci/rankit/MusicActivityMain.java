@@ -2,6 +2,8 @@ package ucsc.hci.rankit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -89,6 +91,30 @@ public class MusicActivityMain extends ActionBarActivity {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
         }
+
+        /*
+
+        Resources res = getResources();
+        Drawable d1 = res.getDrawable(R.drawable.image_1);
+        Log.d("Got Image", d1.toString());
+
+
+
+        for (int i = 0; i < mObjectList.size(); ++i) {
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            try {
+                Log.d("Inside try", d1.toString());
+
+                mObjectList.get(i).setIcon(d1);
+                Log.d("try done", d1.toString());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        */
+
 
         StableArrayAdapter adapter = new StableArrayAdapter(this, R.layout.item_view, mObjectList);
         DynamicListView listView = (DynamicListView) findViewById(R.id.MusicListView);
@@ -359,7 +385,7 @@ public class MusicActivityMain extends ActionBarActivity {
             for (int i = 0; i < mObjectList.size(); ++i) {
                 Log.d("Show Items", mObjectList.get(i).getTitle());
                 mObjectList.get(i).setTitle(result.get(i).name);
-                mObjectList.get(i).setDirector(" ");
+                mObjectList.get(i).setDirector(result.get(i).artist);
                 mObjectList.get(i).setItemID(result.get(i).item_id);
                 //mObjectList.get(i).setIcon(result.get(i).cover_art);
 
@@ -369,12 +395,14 @@ public class MusicActivityMain extends ActionBarActivity {
                 //Drawable item_img = Drawable.createFromStream()
 
 
-                /*
 
 
-                String img_url = itemList.get(i).cover_art;
+
+                String img_url = itemList.get(i).album_art;
+                Log.d("Album Art",img_url);
 
                 String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + img_url;
+                Log.d("Image URL",full_url);
 
                 try{
                     getImageActions(full_url);
@@ -382,11 +410,11 @@ public class MusicActivityMain extends ActionBarActivity {
 
                 }
 
-                Drawable item_img = Drawable.createFromStream(is,"test");
+                Drawable item_img = Drawable.createFromStream(is2,"test");
+
+                mObjectList.get(i).setIcon(item_img);
 
 
-
-                */
 
 
 
@@ -425,7 +453,7 @@ public class MusicActivityMain extends ActionBarActivity {
             if(networkInfo != null && networkInfo.isConnected()) {
                 new MakeImageGetRequest().execute(full_url);
                 // Parse operations
-                jsonActions();
+                //jsonActions();
             }
             else {
                 //else cases
@@ -478,7 +506,7 @@ public class MusicActivityMain extends ActionBarActivity {
                 // Starts the query
                 conn.connect();
                 int response = conn.getResponseCode();
-                Log.d(DEBUG_TAG, "The response is: " + response);
+                Log.d(DEBUG_TAG, "The response on Image collection is: " + response);
                 is2 = conn.getInputStream();
 
                 // IN_STREAM = is;

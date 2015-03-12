@@ -1,5 +1,9 @@
 package ucsc.hci.rankit;
 
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -10,6 +14,14 @@ public class Book {
 
 
     static Drawable d0 = Drawable.createFromPath("drawable/image_0.jpg");
+
+    //Resources res = getResources();
+    //Drawable drawable = res.getDrawable(R.drawable.myimage);
+
+
+    //public static Bitmap d0 = BitmapFactory.decodeResource(Resources.getSystem(),R.drawable.image_0);
+
+    //public static Bitmap d0 = BitmapFactory.decodeFile("/home/rakshit/AndroidStudioProjects/RankIt/app/src/main/res/drawable/image_0.jpg");
 
 
     public static final RankObjects[] sBookStrings = new RankObjects[] {

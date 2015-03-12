@@ -2,8 +2,10 @@ package ucsc.hci.rankit;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -58,6 +61,51 @@ public class ImageActivityMain extends ActionBarActivity {
         for (int i = 0; i < Book.sBookStrings.length; ++i) {
             mObjectList.add(Book.sBookStrings[i]);
         }
+
+
+
+        Resources res = getResources();
+        //Drawable d1 = res.getDrawable(R.drawable.image_2);
+        //Log.d("Got Image", d1.toString());
+
+
+
+        for (int i = 0; i < mObjectList.size(); ++i) {
+            Integer img_name=0;
+            Drawable d1;
+            switch (i){
+                case 0:{
+                    img_name = R.drawable.image_0;
+                    break;
+                }
+                case 1:{
+                    img_name = R.drawable.image_1;
+                    break;
+                }
+                case 2:{
+                    img_name = R.drawable.image_2;
+                    break;
+                }
+                case 3:{
+                    img_name = R.drawable.image_3;
+                    break;
+                }
+            }
+
+            d1 = res.getDrawable(img_name);
+
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            try {
+                Log.d("Inside try", d1.toString());
+
+                mObjectList.get(i).setIcon(d1);
+                Log.d("try done", d1.toString());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         gridView = (DynamicGridView) findViewById(R.id.dynamic_image_grid);
         gridView.setAdapter(new DynamicGridAdapter(this,
