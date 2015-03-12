@@ -8,6 +8,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.analytics.GoogleAnalytics;
 
 import android.app.Application;
+import android.content.Context;
 
 import java.util.HashMap;
 
@@ -22,6 +23,8 @@ public class RankItApp extends Application {
 
     public static int GENERAL_TRACKER = 0;
 
+    public static Context context;
+
     public enum TrackerName {
         APP_TRACKER, // Tracker used only in this app.
         GLOBAL_TRACKER, // Tracker used by all the apps from a company. eg: roll-up tracking.
@@ -34,6 +37,16 @@ public class RankItApp extends Application {
     public RankItApp() {
         super();
     }
+
+    public void onCreate(){
+        super.onCreate();
+        RankItApp.context = getApplicationContext();
+    }
+
+    public static Context getAppContext() {
+        return RankItApp.context;
+    }
+
 
     synchronized Tracker getTracker(TrackerName trackerId) {
         if (!mTrackers.containsKey(trackerId)) {

@@ -35,7 +35,7 @@
     <ImageView
         android:layout_width="108dp"
         android:layout_height="108dp"
-        android:src="@drawable/roar"
+        android:src="@drawable/ic_action_person"
         android:id="@+id/usericon"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"

@@ -12,16 +12,16 @@
     <string name="books_button">Books</string>
     <string name="music_button">Music</string>
     <string name="images_button">Images</string>
-    <string name="title_activity_books_activity_main">BooksActivityMain</string>
+    <string name="title_activity_books_activity_main">Rank Books</string>
     <string name="helpPath">Help Screen</string>
-    <string name="user_id">Governator93</string>
-    <string name="user_bio">User Bio \n\nI like good action films with a strong male lead and tons of explosions and shooting. I also enjoy classical music.</string>
-    <string name="user_activity"> governator93 linked his account to facebook \n\ngovernator93 ranked action movies \n\ngovernator93 ranked classical music</string>
+    <string name="user_id">User Name</string>
+    <string name="user_bio">User Bio \n\nUsers can set their bio in the App which is visible on their profile to other users.</string>
+    <string name="user_activity"> User recent activity goes here. \n\n example comments like ranked this item!\n\n User ranked action movies \n\ User ranked classical music</string>
 
 
-    <string name="title_activity_movies_activity_main">MoviesActivityMain</string>
-    <string name="title_activity_music_activity_main">MusicActivityMain</string>
-    <string name="title_activity_images_activity_main">ImagesActivityMain</string>
+    <string name="title_activity_movies_activity_main">Rank Movies</string>
+    <string name="title_activity_music_activity_main">Rank Music</string>
+    <string name="title_activity_images_activity_main">Rank Images</string>
 
     <string name="movies_top">☰Movies</string>
     <string name="submit_button">Submit</string>

@@ -133,7 +133,7 @@
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_action_person"
-            android:onClick="menuActivityCaller"/>
+            android:onClick="userCaller"/>
 
 
         <ImageView

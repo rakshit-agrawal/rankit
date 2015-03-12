@@ -1,5 +1,6 @@
 package ucsc.hci.rankit;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -200,4 +201,15 @@ public class ImagesActivityMain extends ActionBarActivity {
         }
     }
 */
+
+
+
+    public void userCaller(View v){
+
+        Intent intent = new Intent(this, UserStatistics.class);
+        //intent.putExtra(USERS_CALL_STRING,UsersCallString);
+        startActivity(intent);
+
+    }
+
 }

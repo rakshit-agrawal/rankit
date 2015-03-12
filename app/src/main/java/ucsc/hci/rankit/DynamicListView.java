@@ -22,6 +22,7 @@ import android.animation.ObjectAnimator;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -38,6 +39,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+
+import static android.support.v4.app.ActivityCompat.startActivity;
 
 /**
  * The dynamic listview is an extension of listview that supports cell dragging
@@ -150,10 +153,19 @@ public class DynamicListView extends ListView {
      */
     private BitmapDrawable getAndAddHoverView(View v) {
 
-        int w = v.getWidth();
-        int h = v.getHeight();
-        int top = v.getTop();
-        int left = v.getLeft();
+
+        int w = 10;
+        int h = 10;
+        int top = 10;
+        int left = 10;
+        try {
+            w = v.getWidth();
+            h = v.getHeight();
+            top = v.getTop();
+            left = v.getLeft();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         Bitmap b = getBitmapWithBorder(v);
 
@@ -187,9 +199,22 @@ public class DynamicListView extends ListView {
 
     /** Returns a bitmap showing a screenshot of the view passed in. */
     private Bitmap getBitmapFromView(View v) {
-        Bitmap bitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Bitmap bitmap = Bitmap.createBitmap(10,10,Bitmap.Config.ARGB_8888);
+        try{
+        bitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas (bitmap);
         v.draw(canvas);
+        }catch (Exception e){
+            e.printStackTrace();
+            //intent.putExtra(USERS_CALL_STRING,UsersCallString);
+
+
+            //Intent intentnow = new Intent(RankItApp.getAppContext(), MenuPageActivity.class);
+
+
+            //startActivity(MenuPageActivity.intent_global);
+        }
         return bitmap;
     }
 
@@ -284,7 +309,11 @@ public class DynamicListView extends ListView {
                 if (mCellIsMobile) {
                     mHoverCellCurrentBounds.offsetTo(mHoverCellOriginalBounds.left,
                             mHoverCellOriginalBounds.top + deltaY + mTotalOffset);
-                    mHoverCell.setBounds(mHoverCellCurrentBounds);
+                    try {
+                        mHoverCell.setBounds(mHoverCellCurrentBounds);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     invalidate();
 
                     handleCellSwitch();
@@ -422,7 +451,11 @@ public class DynamicListView extends ListView {
                 return;
             }
 
-            mHoverCellCurrentBounds.offsetTo(mHoverCellOriginalBounds.left, mobileView.getTop());
+            try {
+                mHoverCellCurrentBounds.offsetTo(mHoverCellOriginalBounds.left, mobileView.getTop());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
             ObjectAnimator hoverViewAnimator = ObjectAnimator.ofObject(mHoverCell, "bounds",
                     sBoundEvaluator, mHoverCellCurrentBounds);
@@ -449,7 +482,11 @@ public class DynamicListView extends ListView {
                     invalidate();
                 }
             });
-            hoverViewAnimator.start();
+            try{
+                hoverViewAnimator.start();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         } else {
             touchEventsCancelled();
         }

@@ -1,5 +1,6 @@
 package ucsc.hci.rankit;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -12,6 +13,11 @@ import com.google.android.gms.analytics.Tracker;
 
 
 public class MenuPageActivity extends ActionBarActivity {
+
+    public static Intent intent_global; //= new Intent(cntxt, MenuPageActivity.class);
+
+
+    public static Context cntxt=RankItApp.getAppContext();
 
     public static String MoviesCallString = null;
     public static String BooksCallString = null;
@@ -34,6 +40,10 @@ public class MenuPageActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_page);
         final String path = getString(R.string.helpPath);
+
+
+        cntxt = getBaseContext();
+        intent_global =new Intent(cntxt, MenuPageActivity.class);
 
 
         //@Override

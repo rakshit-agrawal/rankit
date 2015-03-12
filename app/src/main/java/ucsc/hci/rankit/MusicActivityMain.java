@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -90,6 +91,7 @@ public class MusicActivityMain extends ActionBarActivity {
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
+            mObjectList.get(i).setDirector(" ");
         }
 
         /*
@@ -548,5 +550,16 @@ public class MusicActivityMain extends ActionBarActivity {
 
 
     }
+
+
+    public void userCaller(View v){
+
+        Intent intent = new Intent(this, UserStatistics.class);
+        //intent.putExtra(USERS_CALL_STRING,UsersCallString);
+        startActivity(intent);
+
+    }
+
+
 
 }

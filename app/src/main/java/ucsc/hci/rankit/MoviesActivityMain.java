@@ -2,8 +2,10 @@ package ucsc.hci.rankit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -14,6 +16,7 @@ import android.test.IsolatedContext;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -94,6 +97,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
+            mObjectList.get(i).setDirector(" ");
 
 
 
@@ -123,6 +127,16 @@ public class MoviesActivityMain extends ActionBarActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
     }
+
+
+    public void userCaller(View v){
+
+        Intent intent = new Intent(this, UserStatistics.class);
+        //intent.putExtra(USERS_CALL_STRING,UsersCallString);
+        startActivity(intent);
+
+    }
+
 
     private void internetActions() {
 
@@ -318,6 +332,8 @@ public class MoviesActivityMain extends ActionBarActivity {
                 mObjectList = DisplayDetails(result);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             Log.d("mObject List", mObjectList.toString());
 
@@ -374,7 +390,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         }
 
 
-        private ArrayList<RankObjects> DisplayDetails(List<MovieDataBox> result) throws IOException {
+        private ArrayList<RankObjects> DisplayDetails(List<MovieDataBox> result) throws IOException, InterruptedException {
 
             Log.d("Json Parsing", "Inside DisplayDetails function");
 
@@ -421,17 +437,24 @@ public class MoviesActivityMain extends ActionBarActivity {
                 String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + img_url;
                 Log.d("Cover URL",full_url);
 
+                String sendingurl = full_url + "-" + i;
+                Log.d("StringSending",sendingurl);
+
 
                 try{
-                    getImageActions(full_url);
+                    getImageActions(sendingurl);
+                    //Drawable item_img = drawable_from_url(full_url);
+
                 } catch (Exception e){
+                    e.printStackTrace();
 
                 }
 
+
                 Drawable item_img = Drawable.createFromStream(is2,"test");
 
-                mObjectList.get(i).setIcon(item_img);
 
+                mObjectList.get(i).setIcon(item_img);
 
 
 
@@ -455,6 +478,24 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
         }
+
+
+            Drawable drawable_from_url(String url) throws java.net.MalformedURLException, java.io.IOException {
+                Bitmap x;
+
+                HttpURLConnection connection = (HttpURLConnection)new URL(url) .openConnection();
+                connection.setRequestProperty("User-agent","Mozilla/4.0");
+
+                connection.connect();
+                InputStream input = connection.getInputStream();
+
+                Resources res = getResources();
+
+
+                x = BitmapFactory.decodeStream(input);
+                Drawable y = new BitmapDrawable(res,x);
+                return y;
+            }
 
 
 
@@ -514,7 +555,19 @@ public class MoviesActivityMain extends ActionBarActivity {
                 //int len = 500;
 
                 try {
-                    URL url = new URL(myurl);
+
+                    Log.d("URL",myurl);
+                    String[] urlmain = myurl.split("-");
+
+                    for(int i=0;i < urlmain.length; i++){
+                        Log.d("SPLIT",urlmain[i]);
+                    }
+
+                    String urltosend = urlmain[0];
+                    Integer pos = Integer.parseInt(urlmain[1]);
+
+                    URL url = new URL(urltosend);
+
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setReadTimeout(10000 /* milliseconds */);
                     conn.setConnectTimeout(15000 /* milliseconds */);
@@ -525,6 +578,16 @@ public class MoviesActivityMain extends ActionBarActivity {
                     int response = conn.getResponseCode();
                     Log.d(DEBUG_TAG, "The response is: " + response);
                     is2 = conn.getInputStream();
+
+                    try {
+                        Log.d("Stream is2",is2.toString());
+                        Drawable item_img = Drawable.createFromStream(is2,"test");
+
+                        mObjectList.get(pos).setIcon(item_img);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+
 
                     // IN_STREAM = is;
 

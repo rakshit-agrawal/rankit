@@ -11,9 +11,10 @@
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/abc_text_size_small_material"
+        android:layout_marginBottom="@dimen/abc_text_size_small_material"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="false"
-        android:src="@drawable/titanic"
         android:adjustViewBounds="true"
         android:maxHeight="100dp"
         android:maxWidth="100dp" />
@@ -24,7 +25,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Titanic"
         android:textSize="25sp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/item_image"
@@ -38,13 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="James Cameron"
         android:textSize="15sp"
+        android:layout_below="@+id/item_title"
         android:layout_alignBottom="@+id/item_image"
+        android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
         android:layout_marginLeft="50dp"
-        android:layout_marginBottom="20dp"
-        android:layout_alignLeft="@+id/item_title"
-        android:layout_alignStart="@+id/item_title" />
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:id="@+id/item_rank"

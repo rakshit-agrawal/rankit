@@ -69,7 +69,12 @@
         </activity>
         <activity
             android:name=".UserStatistics"
-            android:label="@string/title_activity_user_statistics" >
+            android:label="@string/title_activity_user_statistics"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+
         </activity>
     </application>
 
