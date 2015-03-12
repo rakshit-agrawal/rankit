@@ -28,7 +28,7 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         CheeseViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_grid, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_image_grid, null);
             holder = new CheeseViewHolder(convertView);
             convertView.setTag(holder);
         } else {
@@ -58,13 +58,13 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
         private TextView titleText;
 
         private CheeseViewHolder(View view) {
-            rankText = (TextView) view.findViewById(R.id.item_rank);
-            image = (ImageView) view.findViewById(R.id.item_img);
+            rankText = (TextView) view.findViewById(R.id.item_image_rank);
+            image = (ImageView) view.findViewById(R.id.image_thumbs);
             image.setPadding(10, 10, 10, 10);
             image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 
-            titleText = (TextView) view.findViewById(R.id.item_title);
+            //titleText = (TextView) view.findViewById(R.id.item_title);
         }
 
         void build(int position, View view) {
@@ -75,7 +75,7 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
             image.setPadding(10, 10, 10, 10);
             image.setMaxHeight(2);
             image.setBackgroundColor(view.getResources().getColor(colorsGreen[position]));
-            titleText.setText(cObj.getTitle());
+            //titleText.setText(cObj.getTitle());
 
             dictionary.put(position,cObj.getIcon());
             try {

@@ -118,8 +118,9 @@
 
         <ImageView
             android:id="@+id/big_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
             android:paddingLeft="@dimen/abc_action_bar_default_height_material"
             android:paddingRight="@dimen/abc_action_bar_default_height_material"
             android:layout_centerHorizontal="true"
@@ -133,9 +134,11 @@
             android:id="@+id/image_row_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/abc_action_bar_default_height_material"
-            android:layout_below="@+id/button_layout"
+            android:layout_above="@+id/bottom_bar"
+            android:layout_alignParentBottom="true"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="72dp"
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:paddingEnd="@dimen/activity_horizontal_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -145,20 +148,26 @@
 
 
 
-        <ucsc.hci.rankit.DynamicImageGridView
-            android:id="@+id/dynamic_image_grid"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:numColumns="@integer/column_count_images"
-            />
+
+            <ucsc.hci.rankit.DynamicImageGridView
+                android:id="@+id/dynamic_image_grid"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:numColumns="@integer/column_count_images"
+                />
 
 
-    </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
 
 
     <!-- For all Screens -->
 
     <RelativeLayout
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
         android:layout_alignParentBottom="true"
