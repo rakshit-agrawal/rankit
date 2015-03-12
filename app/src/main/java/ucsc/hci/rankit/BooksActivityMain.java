@@ -91,18 +91,27 @@ public class BooksActivityMain extends ActionBarActivity {
 
 
         Resources res = getResources();
-        //Drawable d1 = res.getDrawable(R.drawable.image_2);
-        //Log.d("Got Image", d1.toString());
-
-
-
         for (int i = 0; i < mObjectList.size(); ++i) {
-            Drawable d1 = res.getDrawable(R.drawable.image_0);
-            Integer img_name=R.drawable.image_0;
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            mObjectList.get(i).setTitle("Loading...");
+            mObjectList.get(i).setDirector(" ");
 
+
+
+
+            //Drawable d1 = res.getDrawable(R.drawable.image_2);
+            //Log.d("Got Image", d1.toString());
+
+
+
+
+            Integer img_name=R.drawable.loading_dots;
+
+            Drawable d1; // =res.getDrawable(R.drawable.image_0);
+            /*
             switch (i){
                 case 0:{
-                    img_name = R.drawable.image_0;
+                    img_name = R.drawable.loading_dots;
                     break;
                 }
                 case 1:{
@@ -117,7 +126,11 @@ public class BooksActivityMain extends ActionBarActivity {
                     img_name = R.drawable.image_3;
                     break;
                 }
-            }
+                default:{
+                    img_name = R.drawable.image_0;
+                }
+            }*/
+
 
             d1 = res.getDrawable(img_name);
 

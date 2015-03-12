@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
@@ -16,20 +16,21 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:scaleType="center"
-            android:layout_marginLeft="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:layout_marginRight="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:layout_marginStart="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:layout_marginEnd="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:paddingLeft="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:paddingRight="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:paddingEnd="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:paddingStart="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp"
             />
 
     <TextView
             android:id="@+id/item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+        android:layout_below="@+id/item_img"
             android:singleLine="true"
             android:ellipsize="end"
             android:padding="2dp"
@@ -40,10 +41,10 @@
         android:id="@+id/item_rank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/item_title"
         android:singleLine="true"
         android:ellipsize="end"
-        android:padding="2dp"
         android:gravity="center"
         />
 
-</LinearLayout>
+</RelativeLayout>

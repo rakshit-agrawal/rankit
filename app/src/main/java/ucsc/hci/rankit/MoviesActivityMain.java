@@ -93,13 +93,20 @@ public class MoviesActivityMain extends ActionBarActivity {
             Log.d("Items in display", mObjectList.get(i).getTitle());
         }
 
+        Resources res = getResources();
 
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
             mObjectList.get(i).setDirector(" ");
 
+            Drawable d1 = new BitmapDrawable(res, Bitmap.createBitmap(10, 10, Bitmap.Config.ALPHA_8));
 
+            try {
+                mObjectList.get(i).setIcon(d1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
 
         }

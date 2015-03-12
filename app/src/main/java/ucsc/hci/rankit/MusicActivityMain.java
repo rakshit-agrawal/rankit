@@ -3,6 +3,8 @@ package ucsc.hci.rankit;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -88,12 +90,24 @@ public class MusicActivityMain extends ActionBarActivity {
             mObjectList.add(Music.sMusicStrings[i]);
         }
 
+
+        Resources res = getResources();
+
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
             mObjectList.get(i).setDirector(" ");
-        }
 
+            Drawable d1 = new BitmapDrawable(res, Bitmap.createBitmap(10, 10, Bitmap.Config.ALPHA_8));
+
+            try {
+                mObjectList.get(i).setIcon(d1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
         /*
 
         Resources res = getResources();

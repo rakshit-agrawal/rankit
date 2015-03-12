@@ -96,21 +96,28 @@ public class ImagesActivityMain extends ActionBarActivity {
             mObjectList.add(Image.sImageStrings[i]);
         }
 
-
-
         Resources res = getResources();
+        for (int i = 0; i < mObjectList.size(); ++i) {
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            mObjectList.get(i).setTitle("Loading...");
+            mObjectList.get(i).setDirector(" ");
+
+
+
+
         //Drawable d1 = res.getDrawable(R.drawable.image_2);
         //Log.d("Got Image", d1.toString());
 
 
 
-        for (int i = 0; i < mObjectList.size(); ++i) {
-            Integer img_name=0;
+
+            Integer img_name=R.drawable.loading_dots;
 
             Drawable d1; // =res.getDrawable(R.drawable.image_0);
+            /*
             switch (i){
                 case 0:{
-                    img_name = R.drawable.image_0;
+                    img_name = R.drawable.loading_dots;
                     break;
                 }
                 case 1:{
@@ -128,7 +135,7 @@ public class ImagesActivityMain extends ActionBarActivity {
                 default:{
                     img_name = R.drawable.image_0;
                 }
-            }
+            }*/
 
 
                 d1 = res.getDrawable(img_name);
