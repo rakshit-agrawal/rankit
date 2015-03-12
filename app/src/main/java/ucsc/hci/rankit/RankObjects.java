@@ -31,6 +31,9 @@ public class RankObjects {
         this.item_id = x;
         // return title;
     }
+    public Integer getItemID() {
+        return item_id;
+    }
 
 
     public String getDirector() {

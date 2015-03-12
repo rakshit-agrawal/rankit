@@ -22,6 +22,9 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
 
     public static Map<Integer, Drawable> dictionary = new HashMap<Integer, Drawable>();
 
+    public static Map<Integer, Integer> post_dict = new HashMap<Integer, Integer>();
+
+
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
     @Override
@@ -78,6 +81,7 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
             //titleText.setText(cObj.getTitle());
 
             dictionary.put(position,cObj.getIcon());
+            post_dict.put(position,cObj.getItemID());
             try {
                 Log.d("My Dict", dictionary.toString());
             } catch (Exception e){

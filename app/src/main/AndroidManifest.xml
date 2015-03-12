@@ -117,6 +117,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MainActivity" />
         </activity>
+        <activity
+            android:name=".SubmitComplete"
+            android:label="@string/title_activity_submit_complete"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+        </activity>
     </application>
 
 </manifest>

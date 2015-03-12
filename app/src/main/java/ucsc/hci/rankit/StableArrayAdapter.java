@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.Circle;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
     private ObjType type;
@@ -44,6 +45,9 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
     HashMap<RankObjects, Integer> mIdMap = new HashMap<RankObjects, Integer>();
+
+    public static Map<Integer, Integer> post_dict = new HashMap<Integer, Integer>();
+
 
     public StableArrayAdapter(Context context, int textViewResourceId, List<RankObjects> objects) {
         super(context, textViewResourceId, objects);
@@ -116,6 +120,9 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
         TextView rankText = (TextView) itemView.findViewById(R.id.item_rank);
         rankText.setText(""+(position+1));
+
+        post_dict.put(position,currentObjects.getItemID());
+
 
         return itemView;
     }

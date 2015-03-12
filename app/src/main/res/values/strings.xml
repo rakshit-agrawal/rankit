@@ -126,5 +126,8 @@
     <string name="title_activity_rank_it_login">RankItLoginActivity</string>
     <string name="title_activity_rank_it_register">RankItRegisterActivity</string>
     <string name="title_activity_user_home">UserHomeActivity</string>
+    <string name="title_activity_submit_complete">SubmitComplete</string>
+    <string name="submit_thanks">Thanks for using RankIt!. Your response has been submitted.</string>
+    <string name="back_to_menu">Back to Menu</string>
 
 </resources>

@@ -31,6 +31,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MusicActivityMain extends ActionBarActivity {
@@ -53,6 +54,9 @@ public class MusicActivityMain extends ActionBarActivity {
     public InputStream is = null;
 
     public InputStream is2 = null;
+
+    public InputStream is3 = null;
+
 
 
     public TextView main_text;
@@ -165,6 +169,44 @@ public class MusicActivityMain extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+    public void submitAction(View v) {
+
+        String var_string = "";
+        for ( Map.Entry<Integer, Integer> entry : StableArrayAdapter.post_dict.entrySet() ) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+
+            var_string = var_string + "pos"+ key.toString() + "=" + value.toString()+"&";
+            Log.d("key",key.toString());
+            Log.d("value",value.toString());
+            Log.d("url",var_string);
+
+        }
+
+        Log.d("url",var_string);
+
+        var_string = var_string + "type=music";
+
+
+
+        try{
+            postMovieRanks(var_string);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(this, SubmitComplete.class);
+        //intent.putExtra(MOVIES_CALL_STRING,MoviesCallString);
+        startActivity(intent);
+
+    }
+
+
 
 
     private void internetActions() {
@@ -581,6 +623,108 @@ public class MusicActivityMain extends ActionBarActivity {
 
 
     }
+
+
+
+
+
+    //-----------------Submit Actions
+
+    private void postMovieRanks(String full_url) {
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()) {
+            new MakeMoviePostRequest().execute(full_url);
+            // Parse operations
+            //jsonActions();
+        }
+        else {
+            //else cases
+        }
+    }
+
+
+
+    // Uses AsyncTask to create a task away from the main UI thread. This task takes a
+    // URL string and uses it to create an HttpUrlConnection. Once the connection
+    // has been established, the AsyncTask downloads the contents of the webpage as
+    // an InputStream. Finally, the InputStream is converted into a string, which is
+    // displayed in the UI by the AsyncTask's onPostExecute method.
+    private class MakeMoviePostRequest extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+            // params comes from the execute() call: params[0] is the url.
+            try {
+                return downloadMoviePostUrl(urls[0]);
+            } catch (IOException e) {
+                return ""+ getText(R.string.try_again_error);
+            }
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            //main_text.setText(result);
+        }
+    }
+
+
+
+    // Given a URL, establishes an HttpUrlConnection and retrieves
+    // the web page content as a InputStream, which it returns as
+    // a string.
+    private String downloadMoviePostUrl(String myurl) throws IOException {
+        //  InputStream is = null;
+        // Only display the first 500 characters of the retrieved
+        // web page content.
+        //int len = 500;
+
+        try {
+
+            String base_url = "https://rankitcrowd.appspot.com/RankItWeb/default/rank_items.json?";
+
+
+
+
+            String urltosend = base_url+myurl;
+
+            URL url = new URL(urltosend);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            // Starts the query
+            conn.connect();
+            int response = conn.getResponseCode();
+            Log.d(DEBUG_TAG, "The response is: " + response);
+            is3 = conn.getInputStream();
+
+
+
+            //   return contentAsString;
+            return "Test OK";
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } finally {
+
+
+            // if (is != null) {
+            //     is.close();
+            //}
+        }
+    }
+
+
+
+
+    //-------------Over
+
+
 
 
     public void userCaller(View v){

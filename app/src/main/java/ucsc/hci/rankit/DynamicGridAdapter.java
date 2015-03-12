@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DynamicGridAdapter extends BaseDynamicGridAdapter {
     public DynamicGridAdapter(Context context, List<RankObjects> items, int columnCount) {
@@ -16,6 +18,9 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
 
     int[] colorsBlue = new int[] {R.color.blue1, R.color.blue2, R.color.blue3, R.color.blue4};
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
+
+    public static Map<Integer, Integer> post_dict = new HashMap<Integer, Integer>();
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -55,6 +60,11 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
             image.setMaxHeight(R.dimen.abc_action_bar_default_height_material);
             image.setBackgroundColor(view.getResources().getColor(colorsBlue[position]));
             titleText.setText(cObj.getTitle());
+
+            post_dict.put(position,cObj.getItemID());
+
+
+
         }
     }
 }
