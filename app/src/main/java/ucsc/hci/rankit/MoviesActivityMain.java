@@ -451,10 +451,10 @@ public class MoviesActivityMain extends ActionBarActivity {
                 }
 
 
-                Drawable item_img = Drawable.createFromStream(is2,"test");
+                //Drawable item_img = Drawable.createFromStream(is2,"test");
 
 
-                mObjectList.get(i).setIcon(item_img);
+                //mObjectList.get(i).setIcon(item_img);
 
 
 
@@ -478,25 +478,6 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
         }
-
-
-            Drawable drawable_from_url(String url) throws java.net.MalformedURLException, java.io.IOException {
-                Bitmap x;
-
-                HttpURLConnection connection = (HttpURLConnection)new URL(url) .openConnection();
-                connection.setRequestProperty("User-agent","Mozilla/4.0");
-
-                connection.connect();
-                InputStream input = connection.getInputStream();
-
-                Resources res = getResources();
-
-
-                x = BitmapFactory.decodeStream(input);
-                Drawable y = new BitmapDrawable(res,x);
-                return y;
-            }
-
 
 
 
@@ -587,19 +568,6 @@ public class MoviesActivityMain extends ActionBarActivity {
                     } catch (Exception e){
                         e.printStackTrace();
                     }
-
-
-                    // IN_STREAM = is;
-
-                    // Convert the InputStream into a string
-                    // String contentAsString = readIt(is, len);
-                    //  text_2.setText(contentAsString);
-
-                    // Log.d("Input Stream from download URL's try",contentAsString);
-
-
-                    //  String instream_test = readIt(IN_STREAM,len);
-                    //  Log.d("IN_STREAM from download URL's try",instream_test);
 
 
                     //   return contentAsString;

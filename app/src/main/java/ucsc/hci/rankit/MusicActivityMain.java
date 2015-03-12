@@ -406,15 +406,22 @@ public class MusicActivityMain extends ActionBarActivity {
                 String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + img_url;
                 Log.d("Image URL",full_url);
 
+                String sendingurl = full_url + "-" + i;
+                Log.d("StringSending",sendingurl);
+
+
                 try{
-                    getImageActions(full_url);
+                    getImageActions(sendingurl);
+                    //Drawable item_img = drawable_from_url(full_url);
+
                 } catch (Exception e){
+                    e.printStackTrace();
 
                 }
 
-                Drawable item_img = Drawable.createFromStream(is2,"test");
+                //Drawable item_img = Drawable.createFromStream(is2,"test");
 
-                mObjectList.get(i).setIcon(item_img);
+                //mObjectList.get(i).setIcon(item_img);
 
 
 
@@ -499,7 +506,19 @@ public class MusicActivityMain extends ActionBarActivity {
             //int len = 500;
 
             try {
-                URL url = new URL(myurl);
+
+                Log.d("URL",myurl);
+                String[] urlmain = myurl.split("-");
+
+                for(int i=0;i < urlmain.length; i++){
+                    Log.d("SPLIT",urlmain[i]);
+                }
+
+                String urltosend = urlmain[0];
+                Integer pos = Integer.parseInt(urlmain[1]);
+
+                URL url = new URL(urltosend);
+
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000 /* milliseconds */);
                 conn.setConnectTimeout(15000 /* milliseconds */);
@@ -508,20 +527,17 @@ public class MusicActivityMain extends ActionBarActivity {
                 // Starts the query
                 conn.connect();
                 int response = conn.getResponseCode();
-                Log.d(DEBUG_TAG, "The response on Image collection is: " + response);
+                Log.d(DEBUG_TAG, "The response is: " + response);
                 is2 = conn.getInputStream();
 
-                // IN_STREAM = is;
+                try {
+                    Log.d("Stream is2",is2.toString());
+                    Drawable item_img = Drawable.createFromStream(is2,"test");
 
-                // Convert the InputStream into a string
-                // String contentAsString = readIt(is, len);
-                //  text_2.setText(contentAsString);
-
-                // Log.d("Input Stream from download URL's try",contentAsString);
-
-
-                //  String instream_test = readIt(IN_STREAM,len);
-                //  Log.d("IN_STREAM from download URL's try",instream_test);
+                    mObjectList.get(pos).setIcon(item_img);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
 
                 //   return contentAsString;
@@ -541,6 +557,7 @@ public class MusicActivityMain extends ActionBarActivity {
 
 
         //-------------Over
+
 
 
 
