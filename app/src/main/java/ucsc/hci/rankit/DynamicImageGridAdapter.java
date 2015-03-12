@@ -1,18 +1,26 @@
 package ucsc.hci.rankit;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
     public DynamicImageGridAdapter(Context context, List<RankObjects> items, int columnCount) {
         super(context, items, columnCount);
     }
+    public static Drawable currentImage;
+
+    public static Map<Integer, Drawable> dictionary = new HashMap<Integer, Drawable>();
 
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
@@ -26,6 +34,20 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
         } else {
             holder = (CheeseViewHolder) convertView.getTag();
         }
+
+
+        /*
+
+        if(DynamicImageGridView.selectedFlag==true) {
+            currentImage = holder.image.getDrawable();
+            try {
+                Log.d("In Grid", currentImage.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            DynamicImageGridView.selectedFlag = false;
+        }*/
+
         holder.build(position,convertView);
         return convertView;
     }
@@ -54,6 +76,13 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
             image.setMaxHeight(2);
             image.setBackgroundColor(view.getResources().getColor(colorsGreen[position]));
             titleText.setText(cObj.getTitle());
+
+            dictionary.put(position,cObj.getIcon());
+            try {
+                Log.d("My Dict", dictionary.toString());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

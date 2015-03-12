@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import ucsc.hci.rankit.DynamicImageGridAdapter.*;
+
 
 public class ImagesActivityMain extends ActionBarActivity {
 
@@ -64,7 +66,8 @@ public class ImagesActivityMain extends ActionBarActivity {
 
         for (int i = 0; i < mObjectList.size(); ++i) {
             Integer img_name=0;
-            Drawable d1;
+
+            Drawable d1; // =res.getDrawable(R.drawable.image_0);
             switch (i){
                 case 0:{
                     img_name = R.drawable.image_0;
@@ -82,9 +85,13 @@ public class ImagesActivityMain extends ActionBarActivity {
                     img_name = R.drawable.image_3;
                     break;
                 }
+                default:{
+                    img_name = R.drawable.image_0;
+                }
             }
 
-            d1 = res.getDrawable(img_name);
+
+                d1 = res.getDrawable(img_name);
 
             Log.d("Show Items", mObjectList.get(i).getTitle());
             try {
@@ -122,7 +129,10 @@ public class ImagesActivityMain extends ActionBarActivity {
                 Log.d(TAG, "drag started at position " + position);
 
 
-                Drawable currImage = mObjectList.get(position).getIcon();
+                //Drawable currImage = mObjectList.get(position).getIcon();
+                Drawable currImage = DynamicImageGridAdapter.dictionary.get(position);
+                //Drawable currImage = DynamicImageGridAdapter.currentImage;
+                //Log.d("Drawable now", currImage.toString());
                 ImageView bigImage = (ImageView) findViewById(R.id.big_image);
                 bigImage.setImageDrawable(currImage);
 

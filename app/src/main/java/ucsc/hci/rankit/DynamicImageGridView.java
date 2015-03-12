@@ -39,6 +39,8 @@ import ucsc.hci.rankit.ImagesActivityMain.*;
 
 
 public class DynamicImageGridView extends GridView {
+
+    public static boolean selectedFlag = false;
     private static final int INVALID_ID = -1;
 
     //public ArrayList<RankObjects> mObjectList
@@ -412,6 +414,12 @@ public class DynamicImageGridView extends GridView {
         if (v == null) {
             return -1;
         } else {
+            try{
+                Log.d("Drawable Info",v.getParent().toString());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
             return getPositionForView(v);
         }
     }
@@ -542,15 +550,14 @@ public class DynamicImageGridView extends GridView {
         mTotalOffsetY = 0;
         mTotalOffsetX = 0;
         int itemNum = position - getFirstVisiblePosition();
+        selectedFlag = true;
+
         View selectedView = getChildAt(itemNum);
         if (selectedView != null) {
-            try{
-                Log.d("Drawable Info",selectedView.getDrawableState().toString());
-            } catch (Exception e){
-                e.printStackTrace();
-            }
+
 
             mMobileItemId = getAdapter().getItemId(position);
+
             if (mSelectedItemBitmapCreationListener != null)
                 mSelectedItemBitmapCreationListener.onPreSelectedItemBitmapCreation(selectedView, position, mMobileItemId);
             mHoverCell = getAndAddHoverView(selectedView);

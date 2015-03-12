@@ -59,8 +59,9 @@ public class BooksActivityMain extends ActionBarActivity {
 
 
         for (int i = 0; i < mObjectList.size(); ++i) {
-            Integer img_name=0;
-            Drawable d1;
+            Drawable d1 = res.getDrawable(R.drawable.image_0);
+            Integer img_name=R.drawable.image_0;
+
             switch (i){
                 case 0:{
                     img_name = R.drawable.image_0;
