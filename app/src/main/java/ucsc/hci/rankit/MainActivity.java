@@ -69,7 +69,7 @@ public class MainActivity extends ActionBarActivity {
 
     public void loginActivityCaller(View v){
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, MenuPageActivity.class);
         intent.putExtra(FINAL_STRING_MESSAGE,FinalString);
         startActivity(intent);
 
