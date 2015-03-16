@@ -8,3 +8,17 @@ Project Links
     Project site: http://rankitcrowd.appspot.com/RankItWeb
     Get the App: http://rankitcrowd.appspot.com/RankItWeb/default/experience
 
+
+
+#TODO#
+* Login Process
+* * REST to login
+* * Token Generation
+* * Token in settings, use as session controller
+
+* List count selection
+* * Enable list count selection option for users.
+* * Base all parameters within settings
+
+* Analytics
+* * Integrate Analytics within the App
