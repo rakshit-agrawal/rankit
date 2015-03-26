@@ -20,7 +20,8 @@ public class Movie {
     String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/";
 
     public static URL url;
-    public static Bitmap bmp; //= BitmapFactory.decodeStream(url.openConnection().getInputStream());
+    //public static Bitmap bmp; //= BitmapFactory.decodeStream(url.openConnection().getInputStream());
+    static Drawable bmp;
 
     public static final RankObjects[] sMovieStrings = new RankObjects[]
 

@@ -5,22 +5,27 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!--
+     To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
+     option is required to comply with the Google+ Sign-In developer policies
+    -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
-        android:allowBackup="true"
         android:name=".RankItApp"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <meta-data
             android:name="com.crashlytics.ApiKey"
             android:value="1ac9a68cf46f86da225f6469f7edf72de5a5e94f" />
-
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <activity
             android:name=".MainActivity"
@@ -31,10 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-
         <activity
             android:name=".MenuPageActivity"
             android:label="@string/title_activity_menu_page"
@@ -58,7 +59,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
-
         </activity>
         <activity
             android:name=".MusicActivityMain"
@@ -67,11 +67,59 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
-
         </activity>
         <activity
             android:name=".ImagesActivityMain"
             android:label="@string/title_activity_images_activity_main"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+        </activity>
+        <activity
+            android:name=".UserStatistics"
+            android:label="@string/title_activity_user_statistics"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RankItLoginActivity"
+            android:label="@string/title_activity_rank_it_login"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RankItRegisterActivity"
+            android:label="@string/title_activity_rank_it_register"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MainActivity" />
+        </activity>
+        <activity
+            android:name=".UserHomeActivity"
+            android:label="@string/title_activity_user_home"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MainActivity" />
+        </activity>
+        <activity
+            android:name=".SubmitComplete"
+            android:label="@string/title_activity_submit_complete"
             android:parentActivityName=".MenuPageActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

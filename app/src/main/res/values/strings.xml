@@ -6,18 +6,22 @@
     <string name="description_front">A crowdsourced platform to rank items.</string>
     <string name="action_settings">Settings</string>
     <string name="next_button">Next</string>
-    <string name="title_activity_menu_page">MenuPageActivity</string>
+    <string name="title_activity_menu_page">Home</string>
     <string name="menu_head_text">Please select a category</string>
     <string name="movies_button">Movies</string>
     <string name="books_button">Books</string>
     <string name="music_button">Music</string>
     <string name="images_button">Images</string>
-    <string name="title_activity_books_activity_main">BooksActivityMain</string>
+    <string name="title_activity_books_activity_main">Rank Books</string>
     <string name="helpPath">Help Screen</string>
+    <string name="user_id">User Name</string>
+    <string name="user_bio">User Bio \n\nUsers can set their bio in the App which is visible on their profile to other users.</string>
+    <string name="user_activity"> User recent activity goes here. \n\n example comments like ranked this item!\n\n User ranked action movies \n\ User ranked classical music</string>
 
-    <string name="title_activity_movies_activity_main">MoviesActivityMain</string>
-    <string name="title_activity_music_activity_main">MusicActivityMain</string>
-    <string name="title_activity_images_activity_main">ImagesActivityMain</string>
+
+    <string name="title_activity_movies_activity_main">Rank Movies</string>
+    <string name="title_activity_music_activity_main">Rank Music</string>
+    <string name="title_activity_images_activity_main">Rank Images</string>
 
     <string name="movies_top">☰Movies</string>
     <string name="submit_button">Submit</string>
@@ -29,6 +33,9 @@
     <string name="try_again_error">
         Unable to fetch data. Please try again.</string>
 
+    <item type="id" name="dgv_wobble_tag"/>
+    <integer name="column_count">2</integer>
+    <integer name="column_count_images">4</integer>
 
     <item name="black" type="color">#000000</item>
     <item name="black1" type="color">#212121</item>
@@ -43,18 +50,24 @@
     <item name="darkgreen" type="color">#FF669900</item>
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
-    <item name="red1" type="color">#C62828</item>
-    <item name="red2" type="color">#E53935</item>
-    <item name="red3" type="color">#EF5350</item>
-    <item name="red4" type="color">#E57373</item>
-    <item name="purple1" type="color">#4527A0</item>
-    <item name="purple2" type="color">#5E35B1</item>
-    <item name="purple3" type="color">#7E57C2</item>
-    <item name="purple4" type="color">#B39DDB</item>
-    <item name="green1" type="color">#2E7D32</item>
-    <item name="green2" type="color">#43A047</item>
-    <item name="green3" type="color">#66BB6A</item>
-    <item name="green4" type="color">#81C784</item>
+
+    <item name="red1" type="color">#FFFF3030</item>
+    <item name="red2" type="color">#DDFF3030</item>
+    <item name="red3" type="color">#BBFF3030</item>
+    <item name="red4" type="color">#99FF3030</item>
+    <item name="purple1" type="color">#FFA643C7</item>
+    <item name="purple2" type="color">#DDA643C7</item>
+    <item name="purple3" type="color">#BBA643C7</item>
+    <item name="purple4" type="color">#99A643C7</item>
+    <item name="green1" type="color">#FF1FBC5A</item>
+    <item name="green2" type="color">#DD1FBC5A</item>
+    <item name="green3" type="color">#BB1FBC5A</item>
+    <item name="green4" type="color">#991FBC5A</item>
+    <item name="blue1" type="color">#FF0099CC</item>
+    <item name="blue2" type="color">#DD0099CC</item>
+    <item name="blue3" type="color">#BB0099CC</item>
+    <item name="blue4" type="color">#990099CC</item>
+
     <item name="bottom_bar_grey" type="color">#e3e3e3</item>
 
     <integer-array name="androidcolors">
@@ -80,7 +93,41 @@
     </string-array>
 
     <string-array name="music_genres">
-        <item>Classic Rock</item>
+        <item>Featured</item>
     </string-array>
+
+    <string-array name="images_categories">
+        <item>Featured</item>
+    </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rankit_desc">A crowdsourced ranking platform</string>
+    <string name="skip_login">Skip Login</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="title_activity_user_statistics">UserStatistics</string>
+    <string name="plus_sign_out">Plus Sign Out</string>
+    <string name="plus_disconnect">Plus Disconnect</string>
+
+
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="name">Fullname</string>
+    <string name="title_activity_rank_it_login">RankItLoginActivity</string>
+    <string name="title_activity_rank_it_register">RankItRegisterActivity</string>
+    <string name="title_activity_user_home">UserHomeActivity</string>
+    <string name="title_activity_submit_complete">SubmitComplete</string>
+    <string name="submit_thanks">Thanks for using RankIt!. Your response has been submitted.</string>
+    <string name="back_to_menu">Back to Menu</string>
 
 </resources>

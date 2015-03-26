@@ -2,8 +2,10 @@ package ucsc.hci.rankit;
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -12,23 +14,104 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ImageActivityMain extends ActionBarActivity {
 
     // Create a string for the ImageView label
-    private static final String GRIDVIEW_TAG = "test tag";
     private static final String IMAGEVIEW_TAG = "icon bitmap";
 
+    private static final String TAG = ImageActivityMain.class.getName();
+    private DynamicGridView gridView;
+
+    public ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_images_activity_main);
+
+
+
+        //--- Spinner feature start
+
+        Spinner spinner = (Spinner) findViewById(R.id.images_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.images_categories, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+
+        //--- Spinner feature end
+
+
+        for (int i = 0; i < Book.sBookStrings.length; ++i) {
+            mObjectList.add(Book.sBookStrings[i]);
+        }
+
+
+
+        Resources res = getResources();
+        //Drawable d1 = res.getDrawable(R.drawable.image_2);
+        //Log.d("Got Image", d1.toString());
+
+
+
+        for (int i = 0; i < mObjectList.size(); ++i) {
+            Integer img_name=0;
+            Drawable d1;
+            switch (i){
+                case 0:{
+                    img_name = R.drawable.image_0;
+                    break;
+                }
+                case 1:{
+                    img_name = R.drawable.image_1;
+                    break;
+                }
+                case 2:{
+                    img_name = R.drawable.image_2;
+                    break;
+                }
+                case 3:{
+                    img_name = R.drawable.image_3;
+                    break;
+                }
+            }
+
+            d1 = res.getDrawable(img_name);
+
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            try {
+                Log.d("Inside try", d1.toString());
+
+                mObjectList.get(i).setIcon(d1);
+                Log.d("try done", d1.toString());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        gridView = (DynamicGridView) findViewById(R.id.dynamic_image_grid);
+        gridView.setAdapter(new DynamicGridAdapter(this,
+                new ArrayList<RankObjects>(Arrays.asList(Image.sImageStrings)),
+                getResources().getInteger(R.integer.column_count)));
+
 
         // Create a string for the ImageView label
 

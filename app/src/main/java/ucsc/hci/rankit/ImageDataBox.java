@@ -9,8 +9,8 @@ public final class ImageDataBox {
     public String name;
     public String image_file;
     public String date_created;
-    public Integer category;
-    public Integer creator;
+    public String category;
+    public String creator;
     public String url;
     public String ratings;
     public String creator_website;
@@ -22,8 +22,8 @@ public final class ImageDataBox {
         this.name = "";
         this.image_file = "";
         this.date_created = "";
-        this.category = 0;
-        this.creator = 0;
+        this.category = "";
+        this.creator = "";
         this.url = "";
         this.ratings = "";
         this.creator_website = "";

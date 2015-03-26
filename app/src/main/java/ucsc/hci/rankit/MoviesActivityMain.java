@@ -2,8 +2,11 @@ package ucsc.hci.rankit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -13,6 +16,7 @@ import android.test.IsolatedContext;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -20,6 +24,7 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,8 +33,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MoviesActivityMain extends ActionBarActivity {
@@ -49,7 +56,13 @@ public class MoviesActivityMain extends ActionBarActivity {
 
     public InputStream is = null;
 
+    public InputStream is2 = null;
+    public InputStream is3 = null;
+
+
+
     public TextView main_text;
+//    private List<RankObjects> myObjects = new ArrayList<RankObjects>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +72,7 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
         main_text = (TextView)findViewById(R.id.main_text);
+
 
         //--- Spinner feature start
 
@@ -84,6 +98,23 @@ public class MoviesActivityMain extends ActionBarActivity {
             Log.d("Items in display", mObjectList.get(i).getTitle());
         }
 
+        Resources res = getResources();
+
+        for (int i = 0; i < mObjectList.size(); ++i) {
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            mObjectList.get(i).setTitle("Loading...");
+            mObjectList.get(i).setDirector(" ");
+
+            Drawable d1 = new BitmapDrawable(res, Bitmap.createBitmap(10, 10, Bitmap.Config.ALPHA_8));
+
+            try {
+                mObjectList.get(i).setIcon(d1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
 
         /*
         //for (int i = 0; i < BigList.size(); ++i) {
@@ -108,6 +139,16 @@ public class MoviesActivityMain extends ActionBarActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
     }
+
+
+    public void userCaller(View v){
+
+        Intent intent = new Intent(this, UserStatistics.class);
+        //intent.putExtra(USERS_CALL_STRING,UsersCallString);
+        startActivity(intent);
+
+    }
+
 
     private void internetActions() {
 
@@ -248,6 +289,38 @@ public class MoviesActivityMain extends ActionBarActivity {
     }
 
 
+    public void submitAction(View v) {
+
+        String var_string = "";
+        for ( Map.Entry<Integer, Integer> entry : StableArrayAdapter.post_dict.entrySet() ) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+
+            var_string = var_string + "pos"+ key.toString() + "=" + value.toString()+"&";
+            Log.d("key",key.toString());
+            Log.d("value",value.toString());
+            Log.d("url",var_string);
+
+        }
+
+        Log.d("url",var_string);
+
+        var_string = var_string + "type=movies";
+
+
+
+        try{
+            postMovieRanks(var_string);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(this, SubmitComplete.class);
+        //intent.putExtra(MOVIES_CALL_STRING,MoviesCallString);
+        startActivity(intent);
+
+    }
+
     /*
 
     public class PerformJsonOperations extends AsyncTask<Void, Void, MovieDataBox> {
@@ -280,7 +353,7 @@ public class MoviesActivityMain extends ActionBarActivity {
                     List<MovieDataBox> w = JsonOperations();
                     Log.d("Json Parsing", "Logging from PerformJsonOperations");
 
-                    Log.d("Json Parsing", w.get(w.size() - 1).name);
+                    //Log.d("Json Parsing", w.get(w.size() - 1).name);
 
                     return w;
 
@@ -302,6 +375,8 @@ public class MoviesActivityMain extends ActionBarActivity {
             try {
                 mObjectList = DisplayDetails(result);
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             Log.d("mObject List", mObjectList.toString());
@@ -359,7 +434,7 @@ public class MoviesActivityMain extends ActionBarActivity {
         }
 
 
-        private ArrayList<RankObjects> DisplayDetails(List<MovieDataBox> result) throws IOException {
+        private ArrayList<RankObjects> DisplayDetails(List<MovieDataBox> result) throws IOException, InterruptedException {
 
             Log.d("Json Parsing", "Inside DisplayDetails function");
 
@@ -395,6 +470,41 @@ public class MoviesActivityMain extends ActionBarActivity {
                 mObjectList.get(i).setDirector(" ");
                 mObjectList.get(i).setItemID(result.get(i).item_id);
                 //mObjectList.get(i).setIcon(result.get(i).cover_art);
+
+
+
+
+
+                String img_url = itemList.get(i).cover_art;
+                Log.d("Cover Art",img_url);
+
+                String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + img_url;
+                Log.d("Cover URL",full_url);
+
+                String sendingurl = full_url + "-" + i;
+                Log.d("StringSending",sendingurl);
+
+
+                try{
+                    getImageActions(sendingurl);
+                    //Drawable item_img = drawable_from_url(full_url);
+
+                } catch (Exception e){
+                    e.printStackTrace();
+
+                }
+
+
+                //Drawable item_img = Drawable.createFromStream(is2,"test");
+
+
+                //mObjectList.get(i).setIcon(item_img);
+
+
+
+
+
+
             }
 
 
@@ -415,7 +525,223 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
 
+            //-----------------Get Image
+
+            private void getImageActions(String full_url) {
+
+                ConnectivityManager connMgr = (ConnectivityManager)
+                        getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+                if(networkInfo != null && networkInfo.isConnected()) {
+                    new MakeImageGetRequest().execute(full_url);
+                    // Parse operations
+                    //jsonActions();
+                }
+                else {
+                    //else cases
+                }
+            }
+
+
+
+            // Uses AsyncTask to create a task away from the main UI thread. This task takes a
+            // URL string and uses it to create an HttpUrlConnection. Once the connection
+            // has been established, the AsyncTask downloads the contents of the webpage as
+            // an InputStream. Finally, the InputStream is converted into a string, which is
+            // displayed in the UI by the AsyncTask's onPostExecute method.
+            private class MakeImageGetRequest extends AsyncTask<String, Void, String> {
+                @Override
+                protected String doInBackground(String... urls) {
+
+                    // params comes from the execute() call: params[0] is the url.
+                    try {
+                        return downloadImageUrl(urls[0]);
+                    } catch (IOException e) {
+                        return ""+ getText(R.string.try_again_error);
+                    }
+                }
+                // onPostExecute displays the results of the AsyncTask.
+                @Override
+                protected void onPostExecute(String result) {
+                    //main_text.setText(result);
+                }
+            }
+
+
+
+            // Given a URL, establishes an HttpUrlConnection and retrieves
+            // the web page content as a InputStream, which it returns as
+            // a string.
+            private String downloadImageUrl(String myurl) throws IOException {
+                //  InputStream is = null;
+                // Only display the first 500 characters of the retrieved
+                // web page content.
+                //int len = 500;
+
+                try {
+
+                    Log.d("URL",myurl);
+                    String[] urlmain = myurl.split("-");
+
+                    for(int i=0;i < urlmain.length; i++){
+                        Log.d("SPLIT",urlmain[i]);
+                    }
+
+                    String urltosend = urlmain[0];
+                    Integer pos = Integer.parseInt(urlmain[1]);
+
+                    URL url = new URL(urltosend);
+
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setReadTimeout(10000 /* milliseconds */);
+                    conn.setConnectTimeout(15000 /* milliseconds */);
+                    conn.setRequestMethod("GET");
+                    conn.setDoInput(true);
+                    // Starts the query
+                    conn.connect();
+                    int response = conn.getResponseCode();
+                    Log.d(DEBUG_TAG, "The response is: " + response);
+                    is2 = conn.getInputStream();
+
+                    try {
+                        Log.d("Stream is2",is2.toString());
+                        Drawable item_img = Drawable.createFromStream(is2,"test");
+
+                        mObjectList.get(pos).setIcon(item_img);
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+
+                    //   return contentAsString;
+                    return "Test OK";
+                    // Makes sure that the InputStream is closed after the app is
+                    // finished using it.
+                } finally {
+
+
+                    // if (is != null) {
+                    //     is.close();
+                    //}
+                }
+            }
+
+
+
+
+            //-------------Over
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+    //-----------------Submit Actions
+
+    private void postMovieRanks(String full_url) {
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if(networkInfo != null && networkInfo.isConnected()) {
+            new MakeMoviePostRequest().execute(full_url);
+            // Parse operations
+            //jsonActions();
+        }
+        else {
+            //else cases
+        }
+    }
+
+
+
+    // Uses AsyncTask to create a task away from the main UI thread. This task takes a
+    // URL string and uses it to create an HttpUrlConnection. Once the connection
+    // has been established, the AsyncTask downloads the contents of the webpage as
+    // an InputStream. Finally, the InputStream is converted into a string, which is
+    // displayed in the UI by the AsyncTask's onPostExecute method.
+    private class MakeMoviePostRequest extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+            // params comes from the execute() call: params[0] is the url.
+            try {
+                return downloadMoviePostUrl(urls[0]);
+            } catch (IOException e) {
+                return ""+ getText(R.string.try_again_error);
+            }
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+            //main_text.setText(result);
+        }
+    }
+
+
+
+    // Given a URL, establishes an HttpUrlConnection and retrieves
+    // the web page content as a InputStream, which it returns as
+    // a string.
+    private String downloadMoviePostUrl(String myurl) throws IOException {
+        //  InputStream is = null;
+        // Only display the first 500 characters of the retrieved
+        // web page content.
+        //int len = 500;
+
+        try {
+
+            String base_url = "https://rankitcrowd.appspot.com/RankItWeb/default/rank_items.json?";
+
+
+
+
+            String urltosend = base_url+myurl;
+
+            URL url = new URL(urltosend);
+
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setReadTimeout(10000 /* milliseconds */);
+            conn.setConnectTimeout(15000 /* milliseconds */);
+            conn.setRequestMethod("GET");
+            conn.setDoInput(true);
+            // Starts the query
+            conn.connect();
+            int response = conn.getResponseCode();
+            Log.d(DEBUG_TAG, "The response is: " + response);
+            is3 = conn.getInputStream();
+
+
+
+            //   return contentAsString;
+            return "Test OK";
+            // Makes sure that the InputStream is closed after the app is
+            // finished using it.
+        } finally {
+
+
+            // if (is != null) {
+            //     is.close();
+            //}
+        }
+    }
+
+
+
+
+    //-------------Over
 
 
 }

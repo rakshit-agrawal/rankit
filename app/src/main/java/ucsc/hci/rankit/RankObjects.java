@@ -2,6 +2,7 @@ package ucsc.hci.rankit;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -12,10 +13,13 @@ public class RankObjects {
     private String title;
     private String director;
     private int iconID;
-    private Bitmap icon;
+    private Drawable icon;
     private Integer item_id;
 
-    public RankObjects(String title, String director, Bitmap icon, ObjType type) {
+    //private Drawable icon;
+
+
+    public RankObjects(String title, String director, Drawable icon, ObjType type) {
         this.title = title;
         this.director = director;
         this.icon = icon;
@@ -26,6 +30,9 @@ public class RankObjects {
     public void setItemID(Integer x) {
         this.item_id = x;
         // return title;
+    }
+    public Integer getItemID() {
+        return item_id;
     }
 
 
@@ -51,20 +58,20 @@ public class RankObjects {
        // return title;
     }
 
-    public Bitmap getIcon() {
+    public Drawable getIcon() {
         return icon;
     }
 
 
-    public void setIcon(String x) throws IOException {
+    public void setIcon(Drawable x) throws IOException {
         //this.director = x;
 
-        String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + x;
+        //String full_url = "https://rankitcrowd.appspot.com/RankItWeb/default/download/" + x;
 
-        URL url = new URL(full_url);
-        Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+        //URL url = new URL(full_url);
+        //Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 
-        this.icon = bmp;
+        this.icon = x;
 
         // return title;
     }

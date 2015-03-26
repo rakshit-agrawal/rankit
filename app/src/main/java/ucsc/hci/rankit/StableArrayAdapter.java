@@ -22,6 +22,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ import com.google.android.gms.maps.model.Circle;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
     private ObjType type;
@@ -43,6 +45,9 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
     HashMap<RankObjects, Integer> mIdMap = new HashMap<RankObjects, Integer>();
+
+    public static Map<Integer, Integer> post_dict = new HashMap<Integer, Integer>();
+
 
     public StableArrayAdapter(Context context, int textViewResourceId, List<RankObjects> objects) {
         super(context, textViewResourceId, objects);
@@ -98,9 +103,16 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
         //RoundedImageView imageView = (RoundedImageView) itemView.findViewById(R.id.item_image);
         //imageView.setImageResource(currentObjects.getIconID());
-        imageView.setImageBitmap(currentObjects.getIcon());
+        //imageView.setImageDrawable(currentObjects.getIcon());
+        //Log.d("Setting image", currentObjects.getIcon().toString());
 
-        imageView.setPadding(10, 10, 10, 10);
+        try {
+            imageView.setImageDrawable(currentObjects.getIcon());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //imageView.setPadding(10, 10, 10, 10);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
 
@@ -108,6 +120,9 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
         TextView rankText = (TextView) itemView.findViewById(R.id.item_rank);
         rankText.setText(""+(position+1));
+
+        post_dict.put(position,currentObjects.getItemID());
+
 
         return itemView;
     }

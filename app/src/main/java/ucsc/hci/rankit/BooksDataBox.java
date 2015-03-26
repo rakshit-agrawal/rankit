@@ -10,9 +10,9 @@ public final class BooksDataBox {
     public String isbn;
     public String cover_art;
     public String publish_year;
-    public Integer author;
-    public Integer category;
-    public Integer publisher;
+    public String author;
+    public String category;
+    public String publisher;
     public String amazon_url;
     public String wikipedia_url;
     public String description;
@@ -24,11 +24,11 @@ public final class BooksDataBox {
         this.isbn = "";
         this.cover_art = "";
         this.publish_year = "";
-        this.author = 0;
+        this.author = "";
         this.amazon_url = "";
         this.wikipedia_url = "";
-        this.category = 0;
-        this.publisher = 0;
+        this.category = "";
+        this.publisher = "";
         this.description = "";
 
 

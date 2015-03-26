@@ -35,7 +35,7 @@
             android:text="@string/submit_button"
             android:textColor="@color/white"
             android:textSize="@dimen/abc_text_size_medium_material"
-            android:onClick="booksCaller"
+            android:onClick="submitAction"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/abc_text_size_headline_material"
             android:layout_alignParentRight="true"
@@ -86,10 +86,11 @@
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
         android:layout_centerHorizontal="true"
         >
 
-
+<!--
         <GridView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/gridview"
             android:layout_marginTop="20dp"
@@ -102,8 +103,15 @@
             android:stretchMode="columnWidth"
             android:gravity="center"
             />
+-->
 
 
+        <ucsc.hci.rankit.DynamicGridView
+            android:id="@+id/dynamic_grid"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:numColumns="@integer/column_count"
+            />
 
 
 
@@ -134,7 +142,7 @@
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_action_person"
-            android:onClick="menuActivityCaller"/>
+            android:onClick="userCaller"/>
 
 
         <ImageView
@@ -147,7 +155,7 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_action_settings"
-            android:onClick="menuActivityCaller"/>
+            />
 
     </RelativeLayout>
 
