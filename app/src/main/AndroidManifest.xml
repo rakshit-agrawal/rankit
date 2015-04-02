@@ -125,6 +125,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
         </activity>
+        <activity
+            android:name=".CountSelect"
+            android:label="@string/title_activity_count_select"
+            android:parentActivityName=".MenuPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ucsc.hci.rankit.MenuPageActivity" />
+        </activity>
     </application>
 
 </manifest>

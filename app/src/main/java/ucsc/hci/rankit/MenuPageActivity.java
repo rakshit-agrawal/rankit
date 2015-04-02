@@ -118,6 +118,14 @@ public class MenuPageActivity extends ActionBarActivity {
 
     }
 
+    public void settingsCaller(View v){
+
+        Intent intent = new Intent(this, CountSelect.class);
+        intent.putExtra(USERS_CALL_STRING,UsersCallString);
+        startActivity(intent);
+
+    }
+
 
     public void menuActivityCaller(View v){
 
