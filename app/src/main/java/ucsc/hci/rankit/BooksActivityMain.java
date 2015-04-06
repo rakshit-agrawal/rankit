@@ -39,7 +39,7 @@ public class BooksActivityMain extends ActionBarActivity {
     private static final String TAG = BooksActivityMain.class.getName();
     private DynamicGridView gridView;
 
-    private static final String BOOKS_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=books&count=4";
+    private static final String BOOKS_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=books&count=";
     private ArrayList<RankObjects> myObjects = new ArrayList<RankObjects>();
 
     private List<BooksDataBox> listItems = new ArrayList<BooksDataBox>();
@@ -58,6 +58,13 @@ public class BooksActivityMain extends ActionBarActivity {
 
     public InputStream is2 = null;
     public InputStream is3 = null;
+
+    public static Resources globalres;
+
+    //public static Drawable bmp;
+
+    public static int itemcount = 6;
+
 
 
     public TextView main_text;
@@ -86,13 +93,32 @@ public class BooksActivityMain extends ActionBarActivity {
         internetActions();
 
 
-
+    /*
         for (int i = 0; i < Book.sBookStrings.length; ++i) {
             mObjectList.add(Book.sBookStrings[i]);
         }
-
-
+        */
         Resources res = getResources();
+
+        for (int i = 0; i < itemcount; ++i) {
+            RankObjects x;
+            Drawable d0 = Drawable.createFromPath("drawable/image_0.jpg");
+            Integer img_name=R.drawable.loading_dots;
+
+            Drawable d1;
+
+
+            d1 = res.getDrawable(img_name);
+
+
+            x = new RankObjects("Loading... ", " ", d1, ObjType.BOOKS);
+
+            mObjectList.add(x);
+            Log.d("Items in display", mObjectList.get(i).getTitle());
+        }
+
+
+
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
@@ -150,8 +176,7 @@ public class BooksActivityMain extends ActionBarActivity {
 
 
         gridView = (DynamicGridView) findViewById(R.id.dynamic_grid);
-        gridView.setAdapter(new DynamicGridAdapter(this,
-                new ArrayList<RankObjects>(Arrays.asList(Book.sBookStrings)),
+        gridView.setAdapter(new DynamicGridAdapter(this,mObjectList,
                 getResources().getInteger(R.integer.column_count)));
 
 /*
@@ -255,7 +280,9 @@ public class BooksActivityMain extends ActionBarActivity {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         if(networkInfo != null && networkInfo.isConnected()) {
-            new MakeGetRequest().execute(BOOKS_GET_REQUEST);
+
+            String GET_REQUEST = BOOKS_GET_REQUEST + itemcount;
+            new MakeGetRequest().execute(GET_REQUEST);
             // Parse operations
             jsonActions();
         }
