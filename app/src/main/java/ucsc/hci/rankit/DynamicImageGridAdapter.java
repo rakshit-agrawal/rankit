@@ -25,7 +25,9 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
     public static Map<Integer, Integer> post_dict = new HashMap<Integer, Integer>();
 
 
-    int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
+    //TODO: Please add new color palette for all colors. Palette length required to be 8 colors each
+
+    int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4, R.color.green4, R.color.green4, R.color.green4};
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

@@ -45,7 +45,7 @@ public class ImagesActivityMain extends ActionBarActivity {
     public static ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
 
 
-    private static final String IMAGES_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=images&count=4";
+    private static final String IMAGES_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=images&count=";
     private ArrayList<RankObjects> myObjects = new ArrayList<RankObjects>();
 
     private List<ImageDataBox> listItems = new ArrayList<ImageDataBox>();
@@ -65,6 +65,9 @@ public class ImagesActivityMain extends ActionBarActivity {
     public InputStream is2 = null;
 
     public InputStream is3 = null;
+
+    public static int itemcount = 6;
+
 
 
 
@@ -96,11 +99,32 @@ public class ImagesActivityMain extends ActionBarActivity {
 
 
 
+        /*
         for (int i = 0; i < Image.sImageStrings.length; ++i) {
             mObjectList.add(Image.sImageStrings[i]);
-        }
+        }*/
+
 
         Resources res = getResources();
+
+        for (int i = 0; i < itemcount; ++i) {
+            RankObjects x;
+            Drawable d0 = Drawable.createFromPath("drawable/image_0.jpg");
+            Integer img_name=R.drawable.loading_dots;
+
+            Drawable d1;
+
+
+            d1 = res.getDrawable(img_name);
+
+
+            x = new RankObjects("Loading... ", " ", d1, ObjType.IMAGES);
+
+            mObjectList.add(x);
+            Log.d("Items in display", mObjectList.get(i).getTitle());
+        }
+
+        //Resources res = getResources();
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
             mObjectList.get(i).setTitle("Loading...");
@@ -158,8 +182,11 @@ public class ImagesActivityMain extends ActionBarActivity {
 
 
         gridView = (DynamicImageGridView) findViewById(R.id.dynamic_image_grid);
-        gridView.setAdapter(new DynamicImageGridAdapter(this,
-                new ArrayList<RankObjects>(Arrays.asList(Image.sImageStrings)),
+        //gridView.setAdapter(new DynamicImageGridAdapter(this,
+          //      new ArrayList<RankObjects>(Arrays.asList(Image.sImageStrings)),
+            //    getResources().getInteger(R.integer.column_count_images)));
+
+        gridView.setAdapter(new DynamicImageGridAdapter(this,mObjectList,
                 getResources().getInteger(R.integer.column_count_images)));
 
 /*
@@ -271,7 +298,9 @@ public class ImagesActivityMain extends ActionBarActivity {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         if(networkInfo != null && networkInfo.isConnected()) {
-            new MakeGetRequest().execute(IMAGES_GET_REQUEST);
+
+            String GET_REQUEST = IMAGES_GET_REQUEST + itemcount;
+            new MakeGetRequest().execute(GET_REQUEST);
             // Parse operations
             jsonActions();
         }
