@@ -39,7 +39,7 @@ public class MusicActivityMain extends ActionBarActivity {
     private List<RankObjects> myObjects = new ArrayList<RankObjects>();
 
 
-    private static final String MUSIC_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=music&count=4";
+    private static final String MUSIC_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=music&count=";
 
     private List<MusicDataBox> listItems = new ArrayList<MusicDataBox>();
 
@@ -56,6 +56,12 @@ public class MusicActivityMain extends ActionBarActivity {
     public InputStream is2 = null;
 
     public InputStream is3 = null;
+
+    public static Resources globalres;
+
+    public static Drawable bmp;
+
+    public static int itemcount = 5;
 
 
 
@@ -90,8 +96,19 @@ public class MusicActivityMain extends ActionBarActivity {
 
 
         //ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
+        /*
         for (int i = 0; i < Music.sMusicStrings.length; ++i) {
             mObjectList.add(Music.sMusicStrings[i]);
+        }
+        */
+
+        for (int i = 0; i < itemcount; ++i) {
+            RankObjects x;
+
+            x = new RankObjects("Loading... ", " ", bmp, ObjType.MUSIC);
+
+            mObjectList.add(x);
+            Log.d("Items in display", mObjectList.get(i).getTitle());
         }
 
 
@@ -216,7 +233,8 @@ public class MusicActivityMain extends ActionBarActivity {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected()) {
-            new MakeGetRequest().execute(MUSIC_GET_REQUEST);
+            String GET_REQUEST = MUSIC_GET_REQUEST + itemcount;
+            new MakeGetRequest().execute(GET_REQUEST);
             // Parse operations
             jsonActions();
         } else {
