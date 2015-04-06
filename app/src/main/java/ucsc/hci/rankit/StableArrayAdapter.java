@@ -21,16 +21,12 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.android.gms.maps.model.Circle;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +36,7 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
     private ObjType type;
     final int INVALID_ID = -1;
     private final Context context;
-    int[] colorsRed = new int[] {R.color.red1, R.color.red2, R.color.red3, R.color.red4};
+    int[] colorsRed = new int[] {R.color.red1, R.color.red2, R.color.red3, R.color.red4, R.color.red4, R.color.red4};
     int[] colorsPurple = new int[] {R.color.purple1, R.color.purple2, R.color.purple3, R.color.purple4};
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 

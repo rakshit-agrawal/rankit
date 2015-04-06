@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -12,7 +11,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.test.IsolatedContext;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,16 +22,13 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +36,7 @@ import java.util.Map;
 
 public class MoviesActivityMain extends ActionBarActivity {
 
-    private static final String MOVIE_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=movies&count=4";
+    private static final String MOVIE_GET_REQUEST = "https://rankitcrowd.appspot.com/RankItWeb/default/get_items.json?token=get_my_data&type=movies&count=";
     private ArrayList<RankObjects> myObjects = new ArrayList<RankObjects>();
 
     private List<MovieDataBox> listItems = new ArrayList<MovieDataBox>();
@@ -53,6 +48,13 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
     private static final String DEBUG_TAG = "InternetActions";
+
+    public static Resources globalres;
+
+    public static Drawable bmp;
+
+    public static int itemcount = 5;
+
 
     public InputStream is = null;
 
@@ -93,12 +95,27 @@ public class MoviesActivityMain extends ActionBarActivity {
 
         //mObjectList = BigList;
 
+        /*
         for (int i = 0; i < Movie.sMovieStrings.length; ++i) {
             mObjectList.add(Movie.sMovieStrings[i]);
+            Log.d("Items in display", mObjectList.get(i).getTitle());
+        }*/
+
+        for (int i = 0; i < itemcount; ++i) {
+            RankObjects x;
+
+            x = new RankObjects("Loading... ", " ", bmp, ObjType.MOVIES);
+
+            mObjectList.add(x);
             Log.d("Items in display", mObjectList.get(i).getTitle());
         }
 
         Resources res = getResources();
+        globalres = res;
+
+        setUpdatedItems(res);
+
+        /*
 
         for (int i = 0; i < mObjectList.size(); ++i) {
             Log.d("Show Items", mObjectList.get(i).getTitle());
@@ -115,6 +132,7 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
         }
+        */
 
         /*
         //for (int i = 0; i < BigList.size(); ++i) {
@@ -150,14 +168,36 @@ public class MoviesActivityMain extends ActionBarActivity {
     }
 
 
-    private void internetActions() {
+
+
+    private void setUpdatedItems(Resources r) {
+        for (int i = 0; i < mObjectList.size(); ++i) {
+            Log.d("Show Items", mObjectList.get(i).getTitle());
+            mObjectList.get(i).setTitle("Loading...");
+            mObjectList.get(i).setDirector(" ");
+
+            Drawable d1 = new BitmapDrawable(r, Bitmap.createBitmap(10, 10, Bitmap.Config.ALPHA_8));
+
+            try {
+                mObjectList.get(i).setIcon(d1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
+
+        private void internetActions() {
 
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         if(networkInfo != null && networkInfo.isConnected()) {
-            new MakeGetRequest().execute(MOVIE_GET_REQUEST);
+            String GET_REQUEST = MOVIE_GET_REQUEST + itemcount;
+            new MakeGetRequest().execute(GET_REQUEST);
             // Parse operations
             jsonActions();
         }
@@ -609,6 +649,7 @@ public class MoviesActivityMain extends ActionBarActivity {
                         Drawable item_img = Drawable.createFromStream(is2,"test");
 
                         mObjectList.get(pos).setIcon(item_img);
+
                     } catch (Exception e){
                         e.printStackTrace();
                     }
