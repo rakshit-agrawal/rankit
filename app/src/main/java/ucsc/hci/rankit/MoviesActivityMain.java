@@ -2,6 +2,7 @@ package ucsc.hci.rankit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -44,6 +45,7 @@ public class MoviesActivityMain extends ActionBarActivity {
     public ArrayList<RankObjects> mObjectList = new ArrayList<RankObjects>();
     public List<MovieDataBox> BigList = new ArrayList<MovieDataBox>();
 
+    public static final String PREFS_NAME = "MyPrefsFile";
 
 
 
@@ -53,8 +55,7 @@ public class MoviesActivityMain extends ActionBarActivity {
 
     public static Drawable bmp;
 
-    public static int itemcount = 5;
-
+    public static int itemcount;// = CountSelect.globalitemcount;
 
     public InputStream is = null;
 
@@ -74,6 +75,10 @@ public class MoviesActivityMain extends ActionBarActivity {
 
 
         main_text = (TextView)findViewById(R.id.main_text);
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME,0);
+        int counter = settings.getInt("itemCount",4);
+        itemcount = counter;
 
 
         //--- Spinner feature start
@@ -157,6 +162,21 @@ public class MoviesActivityMain extends ActionBarActivity {
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("itemCount", 6);
+
+        // Commit the edits!
+        editor.commit();
+    }
+
 
 
     public void userCaller(View v){

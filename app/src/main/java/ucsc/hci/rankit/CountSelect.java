@@ -1,21 +1,32 @@
 package ucsc.hci.rankit;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
-public class CountSelect extends ActionBarActivity {
+public class CountSelect extends ActionBarActivity implements AdapterView.OnItemSelectedListener {
+
+    public static int globalitemcount = 4;
+
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_count_select);
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME,0);
+        int counter = settings.getInt("itemCount",4);
+        globalitemcount = counter;
 
 
 
@@ -30,8 +41,30 @@ public class CountSelect extends ActionBarActivity {
         // Apply the adapter to the spinner
         spinner.setAdapter(spinadapter);
 
+        spinner.setOnItemSelectedListener(this);
+
+        spinner.setSelection(counter-2);
+
         //--- Spinner feature end
     }
+
+
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("itemCount", globalitemcount);
+
+        // Commit the edits!
+        editor.commit();
+    }
+
+
 
 
     @Override
@@ -64,4 +97,26 @@ public class CountSelect extends ActionBarActivity {
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Log.d("In Item Select", "We're in item Select!!");
+        Log.d("In Item Select", "text "+ parent.getItemAtPosition(position) + "--" + id);
+        globalitemcount = position+2;
+        Log.d("In Item Select", "GlobalItemCount" + globalitemcount);
+
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("itemCount", globalitemcount);
+
+        // Commit the edits!
+        editor.commit();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        Log.d("In Nothing Select", "We're in nothing Select!!");
+
+    }
 }
