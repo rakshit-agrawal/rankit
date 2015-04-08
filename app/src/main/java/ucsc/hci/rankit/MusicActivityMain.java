@@ -665,6 +665,12 @@ public class MusicActivityMain extends ActionBarActivity {
 
 
 
+    public void settingsCaller(View v){
+
+        Intent intent = new Intent(this, CountSelect.class);
+        startActivity(intent);
+
+    }
 
 
     //-----------------Submit Actions

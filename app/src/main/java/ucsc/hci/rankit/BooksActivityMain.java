@@ -248,6 +248,12 @@ public class BooksActivityMain extends ActionBarActivity {
 
 
 
+    public void settingsCaller(View v){
+
+        Intent intent = new Intent(this, CountSelect.class);
+        startActivity(intent);
+
+    }
 
 
     public void submitAction(View v) {

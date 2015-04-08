@@ -381,6 +381,12 @@ public class MoviesActivityMain extends ActionBarActivity {
 
     }
 
+    public void settingsCaller(View v){
+
+        Intent intent = new Intent(this, CountSelect.class);
+        startActivity(intent);
+
+    }
     /*
 
     public class PerformJsonOperations extends AsyncTask<Void, Void, MovieDataBox> {

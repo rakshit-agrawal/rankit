@@ -48,6 +48,26 @@ android:layout_centerHorizontal="true"
         >
 
 
+        <!-- Code for spinner -->
+        <Spinner
+            android:id="@+id/count_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/abc_text_size_headline_material"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/main_text"
+            android:layout_toEndOf="@id/main_text"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
+            android:background="@color/red3"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/abc_text_size_small_material"
+            android:paddingRight="@dimen/abc_text_size_small_material">
+
+        </Spinner>
+
+
         <Button
             android:id="@+id/back_home_button"
             android:text="@string/back_to_menu"
@@ -61,29 +81,11 @@ android:layout_centerHorizontal="true"
             android:paddingEnd="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_below="@id/count_spinner"
             android:background="@color/red2"
             android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
             android:layout_centerHorizontal="true"/>
 
-        <!-- Code for spinner -->
-        <Spinner
-            android:id="@+id/count_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/abc_text_size_headline_material"
-            android:layout_centerInParent="true"
-            android:layout_toRightOf="@+id/main_text"
-            android:layout_toEndOf="@id/main_text"
-            android:layout_below="@id/back_home_button"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/abc_action_bar_icon_vertical_padding_material"
-            android:background="@color/red3"
-            android:textSize="@dimen/abc_text_size_medium_material"
-            android:textColor="@color/white"
-            android:paddingLeft="@dimen/abc_text_size_small_material"
-            android:paddingRight="@dimen/abc_text_size_small_material">
-
-        </Spinner>
 
 
 

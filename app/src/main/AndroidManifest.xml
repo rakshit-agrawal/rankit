@@ -127,8 +127,7 @@
         </activity>
         <activity
             android:name=".CountSelect"
-            android:label="@string/title_activity_count_select"
-            android:parentActivityName=".MenuPageActivity" >
+            android:label="@string/title_activity_count_select">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ucsc.hci.rankit.MenuPageActivity" />
