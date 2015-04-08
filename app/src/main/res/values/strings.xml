@@ -110,8 +110,6 @@
         <item>6</item>
         <item>7</item>
         <item>8</item>
-        <item>9</item>
-        <item>10</item>
 
     </string-array>
 
@@ -141,8 +139,8 @@
     <string name="title_activity_rank_it_login">RankItLoginActivity</string>
     <string name="title_activity_rank_it_register">RankItRegisterActivity</string>
     <string name="title_activity_user_home">UserHomeActivity</string>
-    <string name="title_activity_submit_complete">SubmitComplete</string>
-    <string name="title_activity_count_select">CountSelect</string>
+    <string name="title_activity_submit_complete">Ranking Submitted</string>
+    <string name="title_activity_count_select">Settings</string>
     <string name="submit_thanks">Thanks for using RankIt!. Your response has been submitted.</string>
     <string name="back_to_menu">Back to Menu</string>
     <string name="select_count">Please select the number of items you\'d like to rank at a time</string>

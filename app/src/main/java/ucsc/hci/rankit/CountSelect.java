@@ -37,7 +37,7 @@ public class CountSelect extends ActionBarActivity implements AdapterView.OnItem
         ArrayAdapter<CharSequence> spinadapter = ArrayAdapter.createFromResource(this,
                 R.array.count_selection, R.layout.spin_item);
         // Specify the layout to use when the list of choices appears
-        spinadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinadapter.setDropDownViewResource(R.layout.spin_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(spinadapter);
 

@@ -113,6 +113,8 @@ public class ImagesActivityMain extends ActionBarActivity {
 
         Resources res = getResources();
 
+        mObjectList.clear();
+
         for (int i = 0; i < itemcount; ++i) {
             RankObjects x;
             Drawable d0 = Drawable.createFromPath("drawable/image_0.jpg");
