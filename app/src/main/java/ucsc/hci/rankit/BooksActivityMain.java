@@ -237,7 +237,7 @@ public class BooksActivityMain extends ActionBarActivity {
         // All objects are from android.context.Context
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("itemCount", 6);
+        editor.putInt("itemCount", itemcount);
 
         // Commit the edits!
         editor.commit();

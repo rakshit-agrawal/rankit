@@ -2,6 +2,7 @@ package ucsc.hci.rankit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -48,6 +49,7 @@ public class MusicActivityMain extends ActionBarActivity {
 
 
 
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     private static final String DEBUG_TAG = "InternetActions";
 
@@ -61,7 +63,7 @@ public class MusicActivityMain extends ActionBarActivity {
 
     public static Drawable bmp;
 
-    public static int itemcount = 5;
+    public static int itemcount;
 
 
 
@@ -75,6 +77,10 @@ public class MusicActivityMain extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //to add back arrow at top;
 
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME,0);
+        int counter = settings.getInt("itemCount",4);
+        itemcount = counter;
 
         //--- Spinner feature start
 
@@ -160,6 +166,21 @@ public class MusicActivityMain extends ActionBarActivity {
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("itemCount", itemcount);
+
+        // Commit the edits!
+        editor.commit();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

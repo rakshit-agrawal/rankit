@@ -2,6 +2,7 @@ package ucsc.hci.rankit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -56,6 +57,7 @@ public class ImagesActivityMain extends ActionBarActivity {
 
 
 
+    public static final String PREFS_NAME = "MyPrefsFile";
 
 
     private static final String DEBUG_TAG = "InternetActions";
@@ -66,7 +68,7 @@ public class ImagesActivityMain extends ActionBarActivity {
 
     public InputStream is3 = null;
 
-    public static int itemcount = 6;
+    public static int itemcount;// = 6;
 
 
 
@@ -80,6 +82,10 @@ public class ImagesActivityMain extends ActionBarActivity {
         setContentView(R.layout.activity_images_activity_main);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME,0);
+        int counter = settings.getInt("itemCount",4);
+        itemcount = counter;
 
         //--- Spinner feature start
 
@@ -215,6 +221,7 @@ public class ImagesActivityMain extends ActionBarActivity {
                 bigImage.setImageDrawable(currImage);
 
 
+
             }
 
             @Override
@@ -241,6 +248,19 @@ public class ImagesActivityMain extends ActionBarActivity {
     }
 
 
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        // We need an Editor object to make preference changes.
+        // All objects are from android.context.Context
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("itemCount", itemcount);
+
+        // Commit the edits!
+        editor.commit();
+    }
 
 
 

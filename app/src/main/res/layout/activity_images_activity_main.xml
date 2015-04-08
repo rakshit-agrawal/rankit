@@ -133,7 +133,7 @@
         <RelativeLayout
             android:id="@+id/image_row_layout"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="172dp"
             android:layout_above="@+id/bottom_bar"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
