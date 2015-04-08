@@ -18,7 +18,7 @@ public class DynamicGridAdapter extends BaseDynamicGridAdapter {
 
     //TODO: Please add new color palette for all colors. Palette length required to be 8 colors each
 
-    int[] colorsBlue = new int[] {R.color.blue1, R.color.blue2, R.color.blue3, R.color.blue4, R.color.blue4, R.color.blue4, R.color.blue4, R.color.blue4};
+    int[] colorsBlue = new int[] {R.color.blue1, R.color.blue2, R.color.blue3, R.color.blue4, R.color.blue4, R.color.blue4, R.color.blue4, R.color.blue4, R.color.blue4, R.color.blue4, R.color.blue4};
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
     public static Map<Integer, Integer> post_dict = new HashMap<Integer, Integer>();

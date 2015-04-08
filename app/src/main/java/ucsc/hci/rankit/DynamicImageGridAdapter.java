@@ -27,7 +27,7 @@ public class DynamicImageGridAdapter extends BaseDynamicImageGridAdapter {
 
     //TODO: Please add new color palette for all colors. Palette length required to be 8 colors each
 
-    int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4, R.color.green4, R.color.green4, R.color.green4};
+    int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4, R.color.green4, R.color.green4, R.color.green4, R.color.green4, R.color.green4, R.color.green4, R.color.green4, R.color.green4};
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

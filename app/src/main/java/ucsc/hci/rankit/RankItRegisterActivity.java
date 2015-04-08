@@ -1,17 +1,6 @@
 package ucsc.hci.rankit;
 
 
-import ucsc.hci.rankit.LoginConfigs;
-import ucsc.hci.rankit.RankItApp;
-import ucsc.hci.rankithelper.SQLiteHandler;
-import ucsc.hci.rankithelper.SessionManager;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,6 +15,15 @@ import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import ucsc.hci.rankithelper.SQLiteHandler;
+import ucsc.hci.rankithelper.SessionManager;
 
 public class RankItRegisterActivity extends Activity {
     private static final String TAG = RankItRegisterActivity.class.getSimpleName();

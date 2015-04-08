@@ -40,8 +40,8 @@ public class StableArrayAdapter extends ArrayAdapter<RankObjects> {
 
     //TODO: Please add new color palette for all colors. Palette length required to be 8 colors each
 
-    int[] colorsRed = new int[] {R.color.red1, R.color.red2, R.color.red3, R.color.red4, R.color.red4, R.color.red4};
-    int[] colorsPurple = new int[] {R.color.purple1, R.color.purple2, R.color.purple3, R.color.purple4, R.color.purple4, R.color.purple4};
+    int[] colorsRed = new int[] {R.color.red1, R.color.red2, R.color.red3, R.color.red4, R.color.red4, R.color.red4, R.color.red4, R.color.red4, R.color.red4, R.color.red4, R.color.red4,};
+    int[] colorsPurple = new int[] {R.color.purple1, R.color.purple2, R.color.purple3, R.color.purple4, R.color.purple4, R.color.purple4, R.color.purple4, R.color.purple4, R.color.purple4, R.color.purple4, R.color.purple4, R.color.purple4};
     int[] colorsGreen = new int[] {R.color.green1, R.color.green2, R.color.green3, R.color.green4};
 
     HashMap<RankObjects, Integer> mIdMap = new HashMap<RankObjects, Integer>();
